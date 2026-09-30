@@ -1,0 +1,25 @@
+CPU: 64 cores
+PTX version:                              8.7
+nvPTXCompiler API:                       12.8
+SM (PTX):                                 8.0
+SM (cubin):                               8.0
+Modules:                                  128
+Programs per module:                     2048
+Total programs:                        262144
+Kernels:                                   16
+Groups per kernel:                        128
+Tile size:                                256
+Embed dims:                                 1
+Input dims:                                 1
+Input type:                               F32
+PTX instructions per program:              32
+Program execution limit:                  100
+Workspace bytes/thread:               8394688
+Threads:                                   64
+Wall time (ms):                      1293.002
+Modules/sec:                            98.99
+Modules/sec/thread:                      1.55
+Full compile (us/prog):                 4.932
+Full compile (us/prog/thread):        315.674
+Full compile (progs/sec):           202740.59
+Full compile (progs/sec/thread):      3167.82

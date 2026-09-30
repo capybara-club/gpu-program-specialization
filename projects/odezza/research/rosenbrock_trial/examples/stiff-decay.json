@@ -1,0 +1,13 @@
+{
+  "schema": "odezza.rosenbrock-trial.v1",
+  "states": ["x", "y"],
+  "rhs": ["-1000000*x", "-y"],
+  "trajectories": [
+    {
+      "times": [0, 0.000001, 0.0001, 0.1, 1],
+      "initial_state": [1, 2],
+      "states": [[null, 2], [null, 1.999998000001], [null, 1.9998000099996667], [null, 1.809674836071919], [null, 0.7357588823428847]]
+    }
+  ],
+  "solver": {"rtol": 1e-8, "atol": 1e-11, "predictions": true}
+}

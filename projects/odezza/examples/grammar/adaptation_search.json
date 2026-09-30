@@ -1,0 +1,268 @@
+{
+  "version": 1,
+  "states": [
+    "A",
+    "B",
+    "C"
+  ],
+  "integration": {
+    "method": "rk4",
+    "dt": 0.01
+  },
+  "constants": {
+    "input": {
+      "value": 1.0
+    },
+    "K_A": {
+      "value": 1.0
+    },
+    "K_B": {
+      "value": 1.0
+    },
+    "K_C": {
+      "value": 1.0
+    },
+    "K_loss": {
+      "value": 1.0
+    },
+    "leak": {
+      "value": 0.02
+    },
+    "linear_weight": {
+      "value": 0.1
+    }
+  },
+  "rng_banks": {
+    "unit": {
+      "base": "uniform01",
+      "count": 128,
+      "seed": 701,
+      "scope": "run"
+    }
+  },
+  "rng": {
+    "prod_A": {
+      "bank": "unit",
+      "axis": "trial",
+      "stream": "prod_A",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.1,
+        "high": 3.0
+      }
+    },
+    "loss_A": {
+      "bank": "unit",
+      "axis": "trial",
+      "stream": "loss_A",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.1,
+        "high": 3.0
+      }
+    },
+    "prod_B": {
+      "bank": "unit",
+      "axis": "trial",
+      "stream": "prod_B",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.1,
+        "high": 3.0
+      }
+    },
+    "loss_B": {
+      "bank": "unit",
+      "axis": "trial",
+      "stream": "loss_B",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.1,
+        "high": 3.0
+      }
+    },
+    "prod_C": {
+      "bank": "unit",
+      "axis": "trial",
+      "stream": "prod_C",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.1,
+        "high": 3.0
+      }
+    },
+    "loss_C": {
+      "bank": "unit",
+      "axis": "trial",
+      "stream": "loss_C",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.1,
+        "high": 3.0
+      }
+    }
+  },
+  "parameters": {
+    "log_prod_A": {
+      "initial": 0.0
+    },
+    "log_loss_A": {
+      "initial": 0.0
+    },
+    "log_prod_B": {
+      "initial": 0.0
+    },
+    "log_loss_B": {
+      "initial": 0.0
+    },
+    "log_prod_C": {
+      "initial": 0.0
+    },
+    "log_loss_C": {
+      "initial": 0.0
+    }
+  },
+  "shapes": {
+    "prod_A": "rng.prod_A*exp(theta.log_prod_A)",
+    "loss_A": "rng.loss_A*exp(theta.log_loss_A)",
+    "prod_B": "rng.prod_B*exp(theta.log_prod_B)",
+    "loss_B": "rng.loss_B*exp(theta.log_loss_B)",
+    "prod_C": "rng.prod_C*exp(theta.log_prod_C)",
+    "loss_C": "rng.loss_C*exp(theta.log_loss_C)"
+  },
+  "rules": {
+    "Activate(q,K)": [
+      {
+        "expr": "q/K",
+        "tags": [
+          "activation_linear"
+        ]
+      },
+      {
+        "expr": "q/(K+q)",
+        "tags": [
+          "activation_saturating"
+        ]
+      },
+      {
+        "expr": "pow(q,2)/(pow(K,2)+pow(q,2))",
+        "tags": [
+          "activation_cooperative"
+        ]
+      },
+      {
+        "expr": "const.leak+q/(K+q)",
+        "tags": [
+          "activation_leaky_saturating"
+        ]
+      }
+    ],
+    "Repress(q,K)": [
+      {
+        "expr": "K/(K+q)",
+        "tags": [
+          "repression_saturating"
+        ]
+      },
+      {
+        "expr": "pow(K,2)/(pow(K,2)+pow(q,2))",
+        "tags": [
+          "repression_cooperative"
+        ]
+      },
+      {
+        "expr": "const.leak+(1-const.leak)*K/(K+q)",
+        "tags": [
+          "repression_leaky"
+        ]
+      },
+      {
+        "expr": "pow(K/(K+q),2)",
+        "tags": [
+          "repression_two_independent_sites"
+        ]
+      }
+    ],
+    "Remove(q)": [
+      {
+        "expr": "q/const.K_loss",
+        "tags": [
+          "loss_linear"
+        ]
+      },
+      {
+        "expr": "q/(const.K_loss+q)",
+        "tags": [
+          "loss_saturating"
+        ]
+      },
+      {
+        "expr": "const.linear_weight*q/const.K_loss+q/(const.K_loss+q)",
+        "tags": [
+          "loss_mixed"
+        ]
+      },
+      {
+        "expr": "pow(q,2)/(pow(const.K_loss,2)+pow(q,2))",
+        "tags": [
+          "loss_cooperative_saturating"
+        ]
+      }
+    ]
+  },
+  "families": [
+    {
+      "id": "negative_feedback",
+      "tags": [
+        "adaptation_hypothesis",
+        "negative_feedback"
+      ],
+      "rhs": {
+        "A": "shape.prod_A*const.input*hole(Repress,C,const.K_C)-shape.loss_A*hole(Remove,A)",
+        "B": "shape.prod_B*hole(Activate,A,const.K_A)-shape.loss_B*hole(Remove,B)",
+        "C": "shape.prod_C*hole(Activate,B,const.K_B)-shape.loss_C*hole(Remove,C)"
+      }
+    },
+    {
+      "id": "incoherent_feed_forward",
+      "tags": [
+        "adaptation_hypothesis",
+        "incoherent_feed_forward"
+      ],
+      "rhs": {
+        "A": "shape.prod_A*const.input-shape.loss_A*hole(Remove,A)",
+        "B": "shape.prod_B*hole(Activate,A,const.K_A)-shape.loss_B*hole(Remove,B)",
+        "C": "shape.prod_C*hole(Activate,A,const.K_A)*hole(Repress,B,const.K_B)-shape.loss_C*hole(Remove,C)"
+      }
+    }
+  ],
+  "expansion": {
+    "strategy": "enumerate",
+    "seed": 73,
+    "max_nodes": 220,
+    "max_depth": 24
+  },
+  "limits": {
+    "max_skeletons": 20000,
+    "max_variants": 20000,
+    "max_configurations": 2000000,
+    "max_derivations": 25000,
+    "max_expansion_steps": 10000000,
+    "max_seconds": 300
+  },
+  "retain": {
+    "global": {
+      "k": 20,
+      "unit": "resolved_structure"
+    },
+    "per_family": {
+      "k": 10,
+      "unit": "resolved_structure"
+    },
+    "by_tag": {
+      "repression_cooperative": 5,
+      "loss_saturating": 5,
+      "loss_cooperative_saturating": 5
+    }
+  }
+}

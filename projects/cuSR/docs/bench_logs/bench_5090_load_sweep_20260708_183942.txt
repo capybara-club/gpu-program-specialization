@@ -1,0 +1,67 @@
+# RTX 5090 AST-SASS module-load amortization sweep
+Wed Jul  8 18:39:42 UTC 2026
+NVIDIA GeForce RTX 5090, 12.0, 595.71.05
+# variant=tile_static_mse ast_mode=alu-reduce sites_per_kernel=16 total_asts=4096 settings=1 rows=1 iters=1 check_rows=0
+
+# asts_per_module=16 modules=256 kernels_per_module=1
+variant=tile_static_mse ast_mode=alu_reduce modules=256 kernels_per_module=1 sites_per_kernel=16 asts=4096 settings=1 run_rows=1 run_iters=1
+nvrtc_seconds=0.012657 cubin_bytes=53568 inspect_sites=16
+patch_seconds=0.007151 asts_per_second=572786.783 patched_sites_per_second=572786.783 us_per_ast=1.746
+patch_registers sites=4096 max_original=48 max_expanded=49 max_patched=51
+module_load_seconds=0.011696 loaded_asts_per_second=350204.510 load_us_per_ast=2.855
+runtime_score_seconds=0.000598 row_evals=4096 row_evals_per_second=6.845e+06
+runtime_score_reduce_seconds=0.001074 row_evals=4096 row_evals_per_second=3.813e+06
+
+# asts_per_module=32 modules=128 kernels_per_module=2
+variant=tile_static_mse ast_mode=alu_reduce modules=128 kernels_per_module=2 sites_per_kernel=16 asts=4096 settings=1 run_rows=1 run_iters=1
+nvrtc_seconds=0.015115 cubin_bytes=100128 inspect_sites=32
+patch_seconds=0.007145 asts_per_second=573304.927 patched_sites_per_second=573304.927 us_per_ast=1.744
+patch_registers sites=4096 max_original=48 max_expanded=49 max_patched=51
+module_load_seconds=0.009500 loaded_asts_per_second=431171.601 load_us_per_ast=2.319
+runtime_score_seconds=0.000606 row_evals=4096 row_evals_per_second=6.760e+06
+runtime_score_reduce_seconds=0.001067 row_evals=4096 row_evals_per_second=3.838e+06
+
+# asts_per_module=64 modules=64 kernels_per_module=4
+variant=tile_static_mse ast_mode=alu_reduce modules=64 kernels_per_module=4 sites_per_kernel=16 asts=4096 settings=1 run_rows=1 run_iters=1
+nvrtc_seconds=0.019148 cubin_bytes=193504 inspect_sites=64
+patch_seconds=0.005597 asts_per_second=731822.976 patched_sites_per_second=731822.976 us_per_ast=1.366
+patch_registers sites=4096 max_original=48 max_expanded=49 max_patched=51
+module_load_seconds=0.003558 loaded_asts_per_second=1151343.813 load_us_per_ast=0.869
+runtime_score_seconds=0.000526 row_evals=4096 row_evals_per_second=7.790e+06
+runtime_score_reduce_seconds=0.000931 row_evals=4096 row_evals_per_second=4.401e+06
+
+# asts_per_module=128 modules=32 kernels_per_module=8
+variant=tile_static_mse ast_mode=alu_reduce modules=32 kernels_per_module=8 sites_per_kernel=16 asts=4096 settings=1 run_rows=1 run_iters=1
+nvrtc_seconds=0.025098 cubin_bytes=380256 inspect_sites=128
+patch_seconds=0.005558 asts_per_second=736896.346 patched_sites_per_second=736896.346 us_per_ast=1.357
+patch_registers sites=4096 max_original=48 max_expanded=49 max_patched=51
+module_load_seconds=0.003041 loaded_asts_per_second=1346878.850 load_us_per_ast=0.742
+runtime_score_seconds=0.000530 row_evals=4096 row_evals_per_second=7.735e+06
+runtime_score_reduce_seconds=0.000917 row_evals=4096 row_evals_per_second=4.465e+06
+
+# asts_per_module=256 modules=16 kernels_per_module=16
+variant=tile_static_mse ast_mode=alu_reduce modules=16 kernels_per_module=16 sites_per_kernel=16 asts=4096 settings=1 run_rows=1 run_iters=1
+nvrtc_seconds=0.044714 cubin_bytes=753504 inspect_sites=256
+patch_seconds=0.005683 asts_per_second=720739.113 patched_sites_per_second=720739.113 us_per_ast=1.387
+patch_registers sites=4096 max_original=48 max_expanded=49 max_patched=51
+module_load_seconds=0.002844 loaded_asts_per_second=1440153.114 load_us_per_ast=0.694
+runtime_score_seconds=0.000526 row_evals=4096 row_evals_per_second=7.785e+06
+runtime_score_reduce_seconds=0.000907 row_evals=4096 row_evals_per_second=4.516e+06
+
+# asts_per_module=512 modules=8 kernels_per_module=32
+variant=tile_static_mse ast_mode=alu_reduce modules=8 kernels_per_module=32 sites_per_kernel=16 asts=4096 settings=1 run_rows=1 run_iters=1
+nvrtc_seconds=0.097194 cubin_bytes=1500256 inspect_sites=512
+patch_seconds=0.005602 asts_per_second=731214.296 patched_sites_per_second=731214.296 us_per_ast=1.368
+patch_registers sites=4096 max_original=48 max_expanded=49 max_patched=51
+module_load_seconds=0.002414 loaded_asts_per_second=1696910.879 load_us_per_ast=0.589
+runtime_score_seconds=0.000522 row_evals=4096 row_evals_per_second=7.851e+06
+runtime_score_reduce_seconds=0.000911 row_evals=4096 row_evals_per_second=4.496e+06
+
+# asts_per_module=1024 modules=4 kernels_per_module=64
+variant=tile_static_mse ast_mode=alu_reduce modules=4 kernels_per_module=64 sites_per_kernel=16 asts=4096 settings=1 run_rows=1 run_iters=1
+nvrtc_seconds=0.257598 cubin_bytes=2993504 inspect_sites=1024
+patch_seconds=0.005668 asts_per_second=722620.860 patched_sites_per_second=722620.860 us_per_ast=1.384
+patch_registers sites=4096 max_original=48 max_expanded=49 max_patched=51
+module_load_seconds=0.001107 loaded_asts_per_second=3700407.719 load_us_per_ast=0.270
+runtime_score_seconds=0.000532 row_evals=4096 row_evals_per_second=7.706e+06
+runtime_score_reduce_seconds=0.000924 row_evals=4096 row_evals_per_second=4.431e+06

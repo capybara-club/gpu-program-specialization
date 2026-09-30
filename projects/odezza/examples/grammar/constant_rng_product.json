@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "states": ["x0", "x1"],
+  "integration": {"method": "rk4", "dt": 0.01},
+  "constant_banks": {"stiffness": [0.5, 1.0, 2.0], "force_scale": [0.1, 1.0]},
+  "constants": {
+    "k": {"bank": "stiffness"},
+    "scale": {"bank": "force_scale"}
+  },
+  "rng_banks": {
+    "u": {"base": "uniform01", "count": 16, "seed": 17, "scope": "run"},
+    "z": {"base": "normal01", "count": 16, "seed": 18, "scope": "run"},
+    "offsets": {"base": "uniform01", "count": 4, "seed": 19, "scope": "skeleton"}
+  },
+  "rng": {
+    "damping": {"bank": "u", "axis": "trial", "stream": "damping", "transform": {"kind": "uniform", "low": 0.01, "high": 0.5}},
+    "force": {"bank": "z", "axis": "trial", "stream": "force", "transform": {"kind": "normal", "mean": 0.0, "std": "const.scale"}},
+    "offset": {"bank": "offsets", "transform": {"kind": "affine", "scale": 0.02, "shift": -0.01}}
+  },
+  "rhs": {"x0": "x1", "x1": "-const.k*x0-rng.damping*x1+rng.force+rng.offset"},
+  "limits": {"max_skeletons": 10, "max_variants": 100, "max_configurations": 10000},
+  "retain": {"global": {"k": 10, "unit": "numeric_candidate"}}
+}

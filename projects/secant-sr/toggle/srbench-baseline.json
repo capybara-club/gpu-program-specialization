@@ -1,0 +1,20 @@
+{
+  "population": 8192,
+  "generations": 100,
+  "seconds": 30,
+  "banks": 64,
+  "constants": 4,
+  "toggle_bits": 6,
+  "max_nodes": 31,
+  "max_depth": 10,
+  "operators": "add,sub,mul,div,sin,cos,sqrt,exp,log",
+  "ast_batch": 4096,
+  "score_mib": 256,
+  "pack": 8,
+  "kernels": 16,
+  "tile_rows": 128,
+  "threads": 128,
+  "workers": 3,
+  "streams": 8,
+  "stop_nmse": 0.000001
+}

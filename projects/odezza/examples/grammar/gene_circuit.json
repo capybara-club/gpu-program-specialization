@@ -1,0 +1,437 @@
+{
+  "version": 1,
+  "description": "Four-gene mechanism screen; illustrative scaled rates. Observations and initial conditions belong to the engine.",
+  "problem_id": "prepared_four_gene_experiment",
+  "states": [
+    "m0",
+    "p0",
+    "m1",
+    "p1",
+    "m2",
+    "p2",
+    "m3",
+    "p3"
+  ],
+  "integration": {
+    "method": "rk4",
+    "dt": 0.01
+  },
+  "constants": {
+    "b": {
+      "value": 0.01
+    },
+    "dm": {
+      "value": 0.1
+    },
+    "kt": {
+      "value": 0.4
+    },
+    "K0": {
+      "value": 0.8
+    },
+    "Kd0": {
+      "value": 1.0
+    },
+    "K1": {
+      "value": 0.9
+    },
+    "Kd1": {
+      "value": 1.1
+    },
+    "K2": {
+      "value": 1.0
+    },
+    "Kd2": {
+      "value": 1.2
+    },
+    "K3": {
+      "value": 1.1
+    },
+    "Kd3": {
+      "value": 1.3
+    }
+  },
+  "rng_banks": {
+    "amplitudes": {
+      "base": "uniform01",
+      "count": 100,
+      "seed": 71,
+      "scope": "run"
+    }
+  },
+  "rng": {
+    "a0": {
+      "bank": "amplitudes",
+      "axis": "trial",
+      "stream": "a0",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.1,
+        "high": 2.0
+      }
+    },
+    "d0": {
+      "bank": "amplitudes",
+      "axis": "trial",
+      "stream": "d0",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.1,
+        "high": 2.0
+      }
+    },
+    "a1": {
+      "bank": "amplitudes",
+      "axis": "trial",
+      "stream": "a1",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.1,
+        "high": 2.0
+      }
+    },
+    "d1": {
+      "bank": "amplitudes",
+      "axis": "trial",
+      "stream": "d1",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.1,
+        "high": 2.0
+      }
+    },
+    "a2": {
+      "bank": "amplitudes",
+      "axis": "trial",
+      "stream": "a2",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.1,
+        "high": 2.0
+      }
+    },
+    "d2": {
+      "bank": "amplitudes",
+      "axis": "trial",
+      "stream": "d2",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.1,
+        "high": 2.0
+      }
+    },
+    "a3": {
+      "bank": "amplitudes",
+      "axis": "trial",
+      "stream": "a3",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.1,
+        "high": 2.0
+      }
+    },
+    "d3": {
+      "bank": "amplitudes",
+      "axis": "trial",
+      "stream": "d3",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.1,
+        "high": 2.0
+      }
+    }
+  },
+  "parameters": {
+    "log_a0": {
+      "initial": 0.0
+    },
+    "log_d0": {
+      "initial": 0.0
+    },
+    "log_a1": {
+      "initial": 0.0
+    },
+    "log_d1": {
+      "initial": 0.0
+    },
+    "log_a2": {
+      "initial": 0.0
+    },
+    "log_d2": {
+      "initial": 0.0
+    },
+    "log_a3": {
+      "initial": 0.0
+    },
+    "log_d3": {
+      "initial": 0.0
+    }
+  },
+  "shapes": {
+    "a0": "rng.a0*exp(theta.log_a0)",
+    "d0": "rng.d0*exp(theta.log_d0)",
+    "a1": "rng.a1*exp(theta.log_a1)",
+    "d1": "rng.d1*exp(theta.log_d1)",
+    "a2": "rng.a2*exp(theta.log_a2)",
+    "d2": "rng.d2*exp(theta.log_d2)",
+    "a3": "rng.a3*exp(theta.log_a3)",
+    "d3": "rng.d3*exp(theta.log_d3)"
+  },
+  "rules": {
+    "P0(q,r)": [
+      {
+        "expr": "1",
+        "tags": [
+          "constitutive",
+          "gene_0:constitutive"
+        ]
+      },
+      {
+        "expr": "q/(const.K0+q)",
+        "tags": [
+          "single_activator",
+          "gene_0:single_activator"
+        ]
+      },
+      {
+        "expr": "1/(1+q/const.K0)",
+        "tags": [
+          "single_repressor",
+          "gene_0:single_repressor"
+        ]
+      },
+      {
+        "expr": "(q/(const.K0+q))*(r/(const.K0+r))",
+        "tags": [
+          "joint_activation",
+          "gene_0:joint_activation"
+        ]
+      },
+      {
+        "expr": "(q/(const.K0+q))+(r/(const.K0+r))-(q/(const.K0+q))*(r/(const.K0+r))",
+        "tags": [
+          "either_activation",
+          "gene_0:either_activation"
+        ]
+      }
+    ],
+    "D0(q)": [
+      {
+        "expr": "q",
+        "tags": [
+          "linear_removal",
+          "gene_0:linear_removal"
+        ]
+      },
+      {
+        "expr": "const.Kd0*q/(const.Kd0+q)",
+        "tags": [
+          "saturating_removal",
+          "gene_0:saturating_removal"
+        ]
+      }
+    ],
+    "P1(q,r)": [
+      {
+        "expr": "1",
+        "tags": [
+          "constitutive",
+          "gene_1:constitutive"
+        ]
+      },
+      {
+        "expr": "q/(const.K1+q)",
+        "tags": [
+          "single_activator",
+          "gene_1:single_activator"
+        ]
+      },
+      {
+        "expr": "1/(1+q/const.K1)",
+        "tags": [
+          "single_repressor",
+          "gene_1:single_repressor"
+        ]
+      },
+      {
+        "expr": "(q/(const.K1+q))*(r/(const.K1+r))",
+        "tags": [
+          "joint_activation",
+          "gene_1:joint_activation"
+        ]
+      },
+      {
+        "expr": "(q/(const.K1+q))+(r/(const.K1+r))-(q/(const.K1+q))*(r/(const.K1+r))",
+        "tags": [
+          "either_activation",
+          "gene_1:either_activation"
+        ]
+      }
+    ],
+    "D1(q)": [
+      {
+        "expr": "q",
+        "tags": [
+          "linear_removal",
+          "gene_1:linear_removal"
+        ]
+      },
+      {
+        "expr": "const.Kd1*q/(const.Kd1+q)",
+        "tags": [
+          "saturating_removal",
+          "gene_1:saturating_removal"
+        ]
+      }
+    ],
+    "P2(q,r)": [
+      {
+        "expr": "1",
+        "tags": [
+          "constitutive",
+          "gene_2:constitutive"
+        ]
+      },
+      {
+        "expr": "q/(const.K2+q)",
+        "tags": [
+          "single_activator",
+          "gene_2:single_activator"
+        ]
+      },
+      {
+        "expr": "1/(1+q/const.K2)",
+        "tags": [
+          "single_repressor",
+          "gene_2:single_repressor"
+        ]
+      },
+      {
+        "expr": "(q/(const.K2+q))*(r/(const.K2+r))",
+        "tags": [
+          "joint_activation",
+          "gene_2:joint_activation"
+        ]
+      },
+      {
+        "expr": "(q/(const.K2+q))+(r/(const.K2+r))-(q/(const.K2+q))*(r/(const.K2+r))",
+        "tags": [
+          "either_activation",
+          "gene_2:either_activation"
+        ]
+      }
+    ],
+    "D2(q)": [
+      {
+        "expr": "q",
+        "tags": [
+          "linear_removal",
+          "gene_2:linear_removal"
+        ]
+      },
+      {
+        "expr": "const.Kd2*q/(const.Kd2+q)",
+        "tags": [
+          "saturating_removal",
+          "gene_2:saturating_removal"
+        ]
+      }
+    ],
+    "P3(q,r)": [
+      {
+        "expr": "1",
+        "tags": [
+          "constitutive",
+          "gene_3:constitutive"
+        ]
+      },
+      {
+        "expr": "q/(const.K3+q)",
+        "tags": [
+          "single_activator",
+          "gene_3:single_activator"
+        ]
+      },
+      {
+        "expr": "1/(1+q/const.K3)",
+        "tags": [
+          "single_repressor",
+          "gene_3:single_repressor"
+        ]
+      },
+      {
+        "expr": "(q/(const.K3+q))*(r/(const.K3+r))",
+        "tags": [
+          "joint_activation",
+          "gene_3:joint_activation"
+        ]
+      },
+      {
+        "expr": "(q/(const.K3+q))+(r/(const.K3+r))-(q/(const.K3+q))*(r/(const.K3+r))",
+        "tags": [
+          "either_activation",
+          "gene_3:either_activation"
+        ]
+      }
+    ],
+    "D3(q)": [
+      {
+        "expr": "q",
+        "tags": [
+          "linear_removal",
+          "gene_3:linear_removal"
+        ]
+      },
+      {
+        "expr": "const.Kd3*q/(const.Kd3+q)",
+        "tags": [
+          "saturating_removal",
+          "gene_3:saturating_removal"
+        ]
+      }
+    ]
+  },
+  "rhs": {
+    "m0": "const.b+shape.a0*hole(P0,p3,p1)-const.dm*m0",
+    "p0": "const.kt*m0-shape.d0*hole(D0,p0)",
+    "m1": "const.b+shape.a1*hole(P1,p0,p2)-const.dm*m1",
+    "p1": "const.kt*m1-shape.d1*hole(D1,p1)",
+    "m2": "const.b+shape.a2*hole(P2,p1,p3)-const.dm*m2",
+    "p2": "const.kt*m2-shape.d2*hole(D2,p2)",
+    "m3": "const.b+shape.a3*hole(P3,p2,p0)-const.dm*m3",
+    "p3": "const.kt*m3-shape.d3*hole(D3,p3)"
+  },
+  "expansion": {
+    "strategy": "enumerate",
+    "max_nodes": 512,
+    "max_depth": 40
+  },
+  "limits": {
+    "max_skeletons": 11000,
+    "max_variants": 11000,
+    "max_configurations": 1100000,
+    "max_derivations": 11000,
+    "max_expansion_steps": 2000000,
+    "max_seconds": 180
+  },
+  "retain": {
+    "global": {
+      "k": 20,
+      "unit": "resolved_structure"
+    },
+    "per_family": {
+      "k": 10,
+      "unit": "resolved_structure"
+    },
+    "by_tag": {
+      "constitutive": 5,
+      "single_activator": 5,
+      "single_repressor": 5,
+      "joint_activation": 5,
+      "either_activation": 5,
+      "gene_0:single_repressor": 5,
+      "gene_0:saturating_removal": 5
+    }
+  },
+  "family_id": "four_gene_mechanisms"
+}

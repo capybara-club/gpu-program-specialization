@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "description": "Finite ordered trees over states and a constant leaf. Coefficient multiplications do not count toward structural depth.",
+  "unary": {
+    "sin": "sin({x})",
+    "cos": "cos({x})",
+    "exp": "exp({x})",
+    "tanh": "tanh({x})",
+    "square": "pow({x},2)"
+  },
+  "binary": {
+    "add": "({x}+{y})",
+    "subtract": "({x}-{y})",
+    "multiply": "({x}*{y})",
+    "divide": "({x}/{y})"
+  }
+}

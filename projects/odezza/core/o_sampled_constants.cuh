@@ -1,0 +1,40 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Charles Durham
+ * SPDX-License-Identifier: MIT
+ *
+ * MIT License
+ *
+ * Copyright (c) 2026 Charles Durham
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+// Shared by scorer and reducer; ABI matches OdezzaSampledParameter (32 bytes).
+struct OParameter { unsigned long long offset; unsigned stride, distribution; float scale, shift, lower, upper; };
+static_assert(sizeof(OParameter)==32,"sample parameter ABI");
+__device__ float o_sample_constant(const OParameter *parameters, const float *uniform_pool,
+    const float *normal_pool, unsigned long long pool_size, unsigned long long parameter_index, unsigned bank) {
+    OParameter p=parameters[parameter_index];
+    if (!p.distribution) return p.shift;
+    unsigned long long delta=(unsigned long long)bank*p.stride;
+    if (p.offset>=pool_size || delta>=pool_size-p.offset) return __int_as_float(0x7fc00000);
+    const float *pool=p.distribution==1?uniform_pool:p.distribution==2?normal_pool:0;
+    if (!pool) return __int_as_float(0x7fc00000);
+    float value=__fadd_rn(__fmul_rn(pool[p.offset+delta],p.scale),p.shift);
+    return fminf(p.upper,fmaxf(p.lower,value));
+}

@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "odezza-grammar-rack1": {
+      "command": "ssh",
+      "args": [
+        "rack1",
+        "env",
+        "PYTHONPATH=/home/cdurham/odezza/scratch/grammar_handoff_20260911/python",
+        "ODEZZA_CORE_LIBRARY=/home/cdurham/odezza/scratch/grammar_handoff_20260911/build/libodezza.so",
+        "python3", "-m", "odezza.grammar",
+        "--root", "/home/cdurham/odezza/scratch/grammar_handoff_20260911/mcp-jobs",
+        "mcp"
+      ]
+    }
+  }
+}

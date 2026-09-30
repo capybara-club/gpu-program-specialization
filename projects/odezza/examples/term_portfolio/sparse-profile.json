@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "coefficient_rows": {
+    "baseline": 8192,
+    "simple": 8192,
+    "compound": 4096,
+    "mixed": 4096,
+    "double_compound": 2048
+  },
+  "ranges": {
+    "linear": [-1.0, 1.0],
+    "quadratic": [-0.5, 0.5],
+    "argument": [-4.0, 4.0],
+    "amplitude": [-1.5, 1.5]
+  },
+  "retained_per_family": 8,
+  "max_configurations": 1000000000,
+  "max_seconds": 120
+}

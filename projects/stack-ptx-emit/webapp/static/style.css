@@ -1,0 +1,295 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Charles Durham
+ * SPDX-License-Identifier: MIT
+ *
+ * MIT License
+ *
+ * Copyright (c) 2026 Charles Durham
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+:root {
+  --bg: #f4f1ea;
+  --paper: #fffdf8;
+  --ink: #1f1a17;
+  --muted: #6d6258;
+  --accent: #155e63;
+  --accent-soft: #d7ecec;
+  --border: #d4cabe;
+  --error: #8d2e2e;
+  --error-bg: #fce9e9;
+  --code-bg: #f6f3ee;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top right, #e6efe5 0, transparent 32%),
+    linear-gradient(180deg, #f8f5ef 0%, var(--bg) 100%);
+}
+
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+}
+
+.hero {
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  margin: 0 0 8px;
+  font-family: "Iowan Old Style", "Palatino Linotype", serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.hero p {
+  margin: 0 0 8px;
+  color: var(--muted);
+  max-width: 900px;
+}
+
+.meta code {
+  font-size: 0.9rem;
+}
+
+.panel {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 30px rgba(31, 26, 23, 0.05);
+}
+
+.panel h2 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 1.2rem;
+}
+
+.field-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.field-block {
+  display: block;
+  margin-top: 16px;
+}
+
+label span {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font: inherit;
+  background: #fff;
+  color: var(--ink);
+}
+
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkbox span {
+  margin: 0;
+  color: var(--ink);
+}
+
+.inline-checkbox {
+  margin-top: 16px;
+}
+
+.actions {
+  margin-top: 20px;
+}
+
+button {
+  border: 0;
+  border-radius: 999px;
+  padding: 12px 20px;
+  font: inherit;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #0f6c73, var(--accent));
+  cursor: pointer;
+}
+
+.summary-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.detail-card {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: #fff;
+  margin-bottom: 12px;
+}
+
+.detail-card summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.markdown-document {
+  margin-top: 14px;
+  padding: 18px;
+  border: 1px solid #e6ddd1;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #fffdfa 0%, #fffaf2 100%);
+  overflow-x: auto;
+}
+
+.markdown-document h1,
+.markdown-document h2,
+.markdown-document h3,
+.markdown-document h4 {
+  font-family: "Iowan Old Style", "Palatino Linotype", serif;
+  color: var(--ink);
+}
+
+.markdown-document h1 {
+  margin-top: 0;
+  font-size: 1.9rem;
+}
+
+.markdown-document h2 {
+  margin-top: 1.6rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+
+.markdown-document p,
+.markdown-document li {
+  line-height: 1.55;
+}
+
+.markdown-document table {
+  width: auto;
+  min-width: 100%;
+  background: #fff;
+}
+
+.markdown-document th,
+.markdown-document td {
+  white-space: normal;
+}
+
+.markdown-document code {
+  background: #f4efe8;
+  padding: 0.08rem 0.28rem;
+  border-radius: 0.35rem;
+}
+
+.markdown-document pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.instruction-list {
+  margin-top: 12px;
+  margin-bottom: 0;
+}
+
+pre {
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  background: var(--code-bg);
+  border-radius: 12px;
+  padding: 14px;
+  border: 1px solid #e6ddd1;
+}
+
+code {
+  font-family: "Iosevka Fixed", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.92rem;
+}
+
+.error-panel {
+  border-color: #e2b9b9;
+  background: var(--error-bg);
+}
+
+.error-panel pre {
+  color: var(--error);
+}
+
+@media (max-width: 720px) {
+  .page {
+    padding: 20px 14px 48px;
+  }
+
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+}

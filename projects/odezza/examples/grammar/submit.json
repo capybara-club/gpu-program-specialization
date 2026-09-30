@@ -1,0 +1,20 @@
+{
+  "problem": {
+    "states": ["x", "y"],
+    "known_rhs": {"x": "-x"},
+    "trajectories": [{
+      "initial": [1, 2],
+      "times": [0, 0.05, 0.1],
+      "values": [[1, 2], [0.951229424500714, 1.902458849001428], [0.9048374180359595, 1.809674836071919]]
+    }]
+  },
+  "grammar": {
+    "version": 1,
+    "states": ["x", "y"],
+    "rhs": {"y": "-const.k*y"},
+    "constants": {"k": {"values": [0.5, 1, 2]}},
+    "integration": {"method": "rk4", "dt": 0.01},
+    "retain": {"global": {"k": 2, "unit": "numeric_candidate"}}
+  },
+  "execution": {"max_seconds": 120}
+}

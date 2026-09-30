@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "kind": "lm",
+  "states": [
+    "m0",
+    "p0",
+    "m1",
+    "p1",
+    "m2",
+    "p2",
+    "m3",
+    "p3"
+  ],
+  "candidate_ids": [
+    "REPLACE_WITH_ENGINE_SCORED_CONFIGURATION_ID"
+  ],
+  "parameters": [
+    "log_a0",
+    "log_a1",
+    "log_a2",
+    "log_a3",
+    "log_d0",
+    "log_d1",
+    "log_d2",
+    "log_d3"
+  ],
+  "integration": {
+    "method": "rk4",
+    "dt": 0.01
+  },
+  "settings": {
+    "max_iterations": 50,
+    "damping": 0.001,
+    "tolerance": 1e-08
+  }
+}

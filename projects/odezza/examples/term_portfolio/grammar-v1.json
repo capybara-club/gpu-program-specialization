@@ -1,0 +1,550 @@
+{
+  "version": 1,
+  "states": [
+    "x",
+    "y",
+    "z"
+  ],
+  "integration": {
+    "method": "rk4",
+    "dt": 0.125
+  },
+  "rules": {
+    "Stateqa": [
+      "leaf.qa",
+      "z"
+    ],
+    "Stateqb": [
+      "leaf.qb",
+      "z"
+    ],
+    "StateAa": [
+      "leaf.Aa",
+      "z"
+    ],
+    "StateAb": [
+      "leaf.Ab",
+      "z"
+    ],
+    "ArgumentA": [
+      "rng.freqA*StateAa",
+      "rng.freqA*(StateAa*StateAb)",
+      "(rng.freqA*StateAa+rng.mixA*StateAb)"
+    ],
+    "StateBa": [
+      "leaf.Ba",
+      "z"
+    ],
+    "StateBb": [
+      "leaf.Bb",
+      "z"
+    ],
+    "ArgumentB": [
+      "rng.freqB*StateBa",
+      "rng.freqB*(StateBa*StateBb)",
+      "(rng.freqB*StateBa+rng.mixB*StateBb)"
+    ]
+  },
+  "leaves": {
+    "qa": {
+      "states": [
+        "x",
+        "y"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "x",
+          "y"
+        ]
+      ]
+    },
+    "qb": {
+      "states": [
+        "x",
+        "y"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "x",
+          "y"
+        ]
+      ]
+    },
+    "Aa": {
+      "states": [
+        "x",
+        "y"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "x",
+          "y"
+        ]
+      ]
+    },
+    "Ab": {
+      "states": [
+        "x",
+        "y"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "x",
+          "y"
+        ]
+      ]
+    },
+    "Ba": {
+      "states": [
+        "x",
+        "y"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "x",
+          "y"
+        ]
+      ]
+    },
+    "Bb": {
+      "states": [
+        "x",
+        "y"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "x",
+          "y"
+        ]
+      ]
+    }
+  },
+  "rng": {
+    "linearx": {
+      "bank": "joint",
+      "axis": "trial",
+      "stream": "linearx",
+      "transform": {
+        "kind": "uniform",
+        "low": -1,
+        "high": 1
+      }
+    },
+    "lineary": {
+      "bank": "joint",
+      "axis": "trial",
+      "stream": "lineary",
+      "transform": {
+        "kind": "uniform",
+        "low": -1,
+        "high": 1
+      }
+    },
+    "linearz": {
+      "bank": "joint",
+      "axis": "trial",
+      "stream": "linearz",
+      "transform": {
+        "kind": "uniform",
+        "low": -1,
+        "high": 1
+      }
+    },
+    "quadratic": {
+      "bank": "joint",
+      "axis": "trial",
+      "stream": "quadratic",
+      "transform": {
+        "kind": "uniform",
+        "low": -0.5,
+        "high": 0.5
+      }
+    },
+    "freqA": {
+      "bank": "joint",
+      "axis": "trial",
+      "stream": "freqA",
+      "transform": {
+        "kind": "uniform",
+        "low": -4,
+        "high": 4
+      }
+    },
+    "mixA": {
+      "bank": "joint",
+      "axis": "trial",
+      "stream": "mixA",
+      "transform": {
+        "kind": "uniform",
+        "low": -4,
+        "high": 4
+      }
+    },
+    "freqB": {
+      "bank": "joint",
+      "axis": "trial",
+      "stream": "freqB",
+      "transform": {
+        "kind": "uniform",
+        "low": -4,
+        "high": 4
+      }
+    },
+    "mixB": {
+      "bank": "joint",
+      "axis": "trial",
+      "stream": "mixB",
+      "transform": {
+        "kind": "uniform",
+        "low": -4,
+        "high": 4
+      }
+    },
+    "amplitude": {
+      "bank": "joint",
+      "axis": "trial",
+      "stream": "amplitude",
+      "transform": {
+        "kind": "uniform",
+        "low": -1.5,
+        "high": 1.5
+      }
+    },
+    "amplitudeB": {
+      "bank": "joint",
+      "axis": "trial",
+      "stream": "amplitudeB",
+      "transform": {
+        "kind": "uniform",
+        "low": -1.5,
+        "high": 1.5
+      }
+    }
+  },
+  "rng_banks": {
+    "joint": {
+      "base": "uniform01",
+      "count": 16384,
+      "seed": 2026091401,
+      "scope": "run"
+    }
+  },
+  "expansion": {
+    "strategy": "enumerate",
+    "max_nodes": 128,
+    "max_depth": 64,
+    "max_expansion_depth": 64
+  },
+  "retain": {
+    "global": {
+      "k": 32,
+      "unit": "resolved_structure"
+    },
+    "per_family": {
+      "k": 12,
+      "unit": "resolved_structure"
+    }
+  },
+  "families": [
+    {
+      "id": "linear",
+      "tags": [
+        "mechanism:linear"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z"
+      },
+      "limits": {
+        "max_skeletons": 2,
+        "max_variants": 2,
+        "max_configurations": 32768,
+        "max_derivations": 100,
+        "max_expansion_steps": 10000
+      }
+    },
+    {
+      "id": "linear_quadratic",
+      "tags": [
+        "mechanism:linear_quadratic"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Stateqa*Stateqb"
+      },
+      "limits": {
+        "max_skeletons": 10,
+        "max_variants": 10,
+        "max_configurations": 163840,
+        "max_derivations": 200,
+        "max_expansion_steps": 10000
+      }
+    },
+    {
+      "id": "sin__linear",
+      "tags": [
+        "mechanism:sin__linear"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*sin(ArgumentA)"
+      },
+      "limits": {
+        "max_skeletons": 22,
+        "max_variants": 22,
+        "max_configurations": 360448,
+        "max_derivations": 440,
+        "max_expansion_steps": 22000
+      }
+    },
+    {
+      "id": "cos__linear",
+      "tags": [
+        "mechanism:cos__linear"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*cos(ArgumentA)"
+      },
+      "limits": {
+        "max_skeletons": 22,
+        "max_variants": 22,
+        "max_configurations": 360448,
+        "max_derivations": 440,
+        "max_expansion_steps": 22000
+      }
+    },
+    {
+      "id": "sin_times_sin__linear",
+      "tags": [
+        "mechanism:sin_times_sin__linear"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*sin(ArgumentA)*sin(ArgumentB)"
+      },
+      "limits": {
+        "max_skeletons": 442,
+        "max_variants": 442,
+        "max_configurations": 7241728,
+        "max_derivations": 8840,
+        "max_expansion_steps": 442000
+      }
+    },
+    {
+      "id": "sin_plus_sin__linear",
+      "tags": [
+        "mechanism:sin_plus_sin__linear"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*sin(ArgumentA)+rng.amplitudeB*sin(ArgumentB)"
+      },
+      "limits": {
+        "max_skeletons": 442,
+        "max_variants": 442,
+        "max_configurations": 7241728,
+        "max_derivations": 8840,
+        "max_expansion_steps": 442000
+      }
+    },
+    {
+      "id": "sin_times_cos__linear",
+      "tags": [
+        "mechanism:sin_times_cos__linear"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*sin(ArgumentA)*cos(ArgumentB)"
+      },
+      "limits": {
+        "max_skeletons": 442,
+        "max_variants": 442,
+        "max_configurations": 7241728,
+        "max_derivations": 8840,
+        "max_expansion_steps": 442000
+      }
+    },
+    {
+      "id": "sin_plus_cos__linear",
+      "tags": [
+        "mechanism:sin_plus_cos__linear"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*sin(ArgumentA)+rng.amplitudeB*cos(ArgumentB)"
+      },
+      "limits": {
+        "max_skeletons": 442,
+        "max_variants": 442,
+        "max_configurations": 7241728,
+        "max_derivations": 8840,
+        "max_expansion_steps": 442000
+      }
+    },
+    {
+      "id": "cos_times_cos__linear",
+      "tags": [
+        "mechanism:cos_times_cos__linear"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*cos(ArgumentA)*cos(ArgumentB)"
+      },
+      "limits": {
+        "max_skeletons": 442,
+        "max_variants": 442,
+        "max_configurations": 7241728,
+        "max_derivations": 8840,
+        "max_expansion_steps": 442000
+      }
+    },
+    {
+      "id": "cos_plus_cos__linear",
+      "tags": [
+        "mechanism:cos_plus_cos__linear"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*cos(ArgumentA)+rng.amplitudeB*cos(ArgumentB)"
+      },
+      "limits": {
+        "max_skeletons": 442,
+        "max_variants": 442,
+        "max_configurations": 7241728,
+        "max_derivations": 8840,
+        "max_expansion_steps": 442000
+      }
+    },
+    {
+      "id": "sin__linear_quadratic",
+      "tags": [
+        "mechanism:sin__linear_quadratic"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Stateqa*Stateqb+rng.amplitude*sin(ArgumentA)"
+      },
+      "limits": {
+        "max_skeletons": 190,
+        "max_variants": 190,
+        "max_configurations": 3112960,
+        "max_derivations": 3800,
+        "max_expansion_steps": 190000
+      }
+    },
+    {
+      "id": "cos__linear_quadratic",
+      "tags": [
+        "mechanism:cos__linear_quadratic"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Stateqa*Stateqb+rng.amplitude*cos(ArgumentA)"
+      },
+      "limits": {
+        "max_skeletons": 190,
+        "max_variants": 190,
+        "max_configurations": 3112960,
+        "max_derivations": 3800,
+        "max_expansion_steps": 190000
+      }
+    },
+    {
+      "id": "sin_times_sin__linear_quadratic",
+      "tags": [
+        "mechanism:sin_times_sin__linear_quadratic"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Stateqa*Stateqb+rng.amplitude*sin(ArgumentA)*sin(ArgumentB)"
+      },
+      "limits": {
+        "max_skeletons": 3970,
+        "max_variants": 3970,
+        "max_configurations": 65044480,
+        "max_derivations": 79400,
+        "max_expansion_steps": 3970000
+      }
+    },
+    {
+      "id": "sin_plus_sin__linear_quadratic",
+      "tags": [
+        "mechanism:sin_plus_sin__linear_quadratic"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Stateqa*Stateqb+rng.amplitude*sin(ArgumentA)+rng.amplitudeB*sin(ArgumentB)"
+      },
+      "limits": {
+        "max_skeletons": 3970,
+        "max_variants": 3970,
+        "max_configurations": 65044480,
+        "max_derivations": 79400,
+        "max_expansion_steps": 3970000
+      }
+    },
+    {
+      "id": "sin_times_cos__linear_quadratic",
+      "tags": [
+        "mechanism:sin_times_cos__linear_quadratic"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Stateqa*Stateqb+rng.amplitude*sin(ArgumentA)*cos(ArgumentB)"
+      },
+      "limits": {
+        "max_skeletons": 3970,
+        "max_variants": 3970,
+        "max_configurations": 65044480,
+        "max_derivations": 79400,
+        "max_expansion_steps": 3970000
+      }
+    },
+    {
+      "id": "sin_plus_cos__linear_quadratic",
+      "tags": [
+        "mechanism:sin_plus_cos__linear_quadratic"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Stateqa*Stateqb+rng.amplitude*sin(ArgumentA)+rng.amplitudeB*cos(ArgumentB)"
+      },
+      "limits": {
+        "max_skeletons": 3970,
+        "max_variants": 3970,
+        "max_configurations": 65044480,
+        "max_derivations": 79400,
+        "max_expansion_steps": 3970000
+      }
+    },
+    {
+      "id": "cos_times_cos__linear_quadratic",
+      "tags": [
+        "mechanism:cos_times_cos__linear_quadratic"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Stateqa*Stateqb+rng.amplitude*cos(ArgumentA)*cos(ArgumentB)"
+      },
+      "limits": {
+        "max_skeletons": 3970,
+        "max_variants": 3970,
+        "max_configurations": 65044480,
+        "max_derivations": 79400,
+        "max_expansion_steps": 3970000
+      }
+    },
+    {
+      "id": "cos_plus_cos__linear_quadratic",
+      "tags": [
+        "mechanism:cos_plus_cos__linear_quadratic"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Stateqa*Stateqb+rng.amplitude*cos(ArgumentA)+rng.amplitudeB*cos(ArgumentB)"
+      },
+      "limits": {
+        "max_skeletons": 3970,
+        "max_variants": 3970,
+        "max_configurations": 65044480,
+        "max_derivations": 79400,
+        "max_expansion_steps": 3970000
+      }
+    }
+  ]
+}

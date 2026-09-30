@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "states": [
+    "x0",
+    "x1"
+  ],
+  "integration": {
+    "method": "rk4",
+    "dt": 0.01,
+    "stiff": false
+  },
+  "parameters": {
+    "k": {
+      "initial": 1.0
+    },
+    "d": {
+      "initial": 0.2
+    }
+  },
+  "rng_banks": {
+    "unit_draws": {
+      "base": "uniform01",
+      "count": 16,
+      "seed": 23,
+      "scope": "run"
+    }
+  },
+  "rules": {
+    "Damping(v)": [
+      {
+        "expr": "theta.d*v",
+        "tags": [
+          "linear_damping"
+        ]
+      },
+      {
+        "expr": "theta.d*(v+rng.scale*pow(v,3))",
+        "tags": [
+          "cubic_damping"
+        ],
+        "locals": {
+          "rng": {
+            "scale": {
+              "bank": "unit_draws",
+              "stream": "damping_scale",
+              "transform": {
+                "kind": "uniform",
+                "low": 0.01,
+                "high": 0.5
+              }
+            }
+          }
+        }
+      },
+      {
+        "expr": "theta.d*rng.scale*tanh(v/rng.scale)",
+        "tags": [
+          "saturating_damping"
+        ],
+        "locals": {
+          "rng": {
+            "scale": {
+              "bank": "unit_draws",
+              "stream": "damping_scale",
+              "transform": {
+                "kind": "uniform",
+                "low": 0.2,
+                "high": 4.0
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "families": [
+    {
+      "id": "oscillator_damping",
+      "tags": [
+        "known_kinematics"
+      ],
+      "rhs": {
+        "x0": "x1",
+        "x1": "-theta.k*x0-hole(Damping,x1)"
+      }
+    }
+  ],
+  "expansion": {
+    "strategy": "enumerate",
+    "seed": 42
+  },
+  "limits": {
+    "max_skeletons": 100,
+    "max_variants": 100,
+    "max_configurations": 10000
+  },
+  "retain": {
+    "global": {
+      "k": 10,
+      "unit": "resolved_structure"
+    },
+    "per_family": {
+      "k": 5,
+      "unit": "resolved_structure"
+    },
+    "by_tag": {
+      "linear_damping": 3,
+      "cubic_damping": 3,
+      "saturating_damping": 3
+    }
+  }
+}

@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: "Durham"
+    given-names: "Charles"
+title: "mm-ptx: PTX Inject and Stack PTX for Python"
+version: 1.0.1
+date-released: 2025-10-19
+url: "https://github.com/MetaMachines/mm-ptx-py"

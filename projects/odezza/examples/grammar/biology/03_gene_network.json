@@ -1,0 +1,348 @@
+{
+  "version": 1,
+  "states": [
+    "m0",
+    "m1",
+    "m2",
+    "p0",
+    "p1",
+    "p2"
+  ],
+  "description": "Illustrative 3-gene circuit; measured mRNA decay/translation/protein loss fixed, per-gene production and threshold adjusted. Regulator identities vary within binary toggles.",
+  "integration": {
+    "method": "rk4",
+    "dt": 0.01
+  },
+  "constants": {
+    "dm": {
+      "value": 0.12
+    },
+    "kt": {
+      "value": 0.4
+    },
+    "dp": {
+      "value": 0.06
+    },
+    "b": {
+      "value": 0.01
+    }
+  },
+  "rng_banks": {
+    "unit": {
+      "base": "uniform01",
+      "count": 32,
+      "seed": 83,
+      "scope": "run"
+    }
+  },
+  "rng": {
+    "a0": {
+      "bank": "unit",
+      "axis": "trial",
+      "stream": "a0",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.05,
+        "high": 2.0
+      }
+    },
+    "K0": {
+      "bank": "unit",
+      "axis": "trial",
+      "stream": "K0",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.1,
+        "high": 10.0
+      }
+    },
+    "a1": {
+      "bank": "unit",
+      "axis": "trial",
+      "stream": "a1",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.05,
+        "high": 2.0
+      }
+    },
+    "K1": {
+      "bank": "unit",
+      "axis": "trial",
+      "stream": "K1",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.1,
+        "high": 10.0
+      }
+    },
+    "a2": {
+      "bank": "unit",
+      "axis": "trial",
+      "stream": "a2",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.05,
+        "high": 2.0
+      }
+    },
+    "K2": {
+      "bank": "unit",
+      "axis": "trial",
+      "stream": "K2",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.1,
+        "high": 10.0
+      }
+    }
+  },
+  "parameters": {
+    "log_a0": {
+      "initial": 0.0
+    },
+    "log_K0": {
+      "initial": 0.0
+    },
+    "log_a1": {
+      "initial": 0.0
+    },
+    "log_K1": {
+      "initial": 0.0
+    },
+    "log_a2": {
+      "initial": 0.0
+    },
+    "log_K2": {
+      "initial": 0.0
+    }
+  },
+  "shapes": {
+    "a0": "rng.a0*exp(theta.log_a0)",
+    "K0": "rng.K0*exp(theta.log_K0)",
+    "a1": "rng.a1*exp(theta.log_a1)",
+    "K1": "rng.K1*exp(theta.log_K1)",
+    "a2": "rng.a2*exp(theta.log_a2)",
+    "K2": "rng.K2*exp(theta.log_K2)"
+  },
+  "leaves": {
+    "reg0": {
+      "states": [
+        "p0",
+        "p1",
+        "p2"
+      ],
+      "arity": 2,
+      "coverage": "all"
+    },
+    "reg1": {
+      "states": [
+        "p0",
+        "p1",
+        "p2"
+      ],
+      "arity": 2,
+      "coverage": "all"
+    },
+    "reg2": {
+      "states": [
+        "p0",
+        "p1",
+        "p2"
+      ],
+      "arity": 2,
+      "coverage": "all"
+    }
+  },
+  "rules": {
+    "Promoter(q,K)": [
+      {
+        "expr": "1/(1+q/K)",
+        "tags": [
+          "repression",
+          "hill_1"
+        ]
+      },
+      {
+        "expr": "1/(1+pow(q/K,2))",
+        "tags": [
+          "repression",
+          "hill_2"
+        ]
+      },
+      {
+        "expr": "q/(K+q)",
+        "tags": [
+          "activation",
+          "hill_1"
+        ]
+      },
+      {
+        "expr": "pow(q,2)/(pow(K,2)+pow(q,2))",
+        "tags": [
+          "activation",
+          "hill_2"
+        ]
+      }
+    ],
+    "Gene0(q,K)": [
+      {
+        "expr": "1/(1+q/K)",
+        "tags": [
+          "repression",
+          "hill_1",
+          "gene_0",
+          "gene_0:repression",
+          "gene_0:hill_1"
+        ]
+      },
+      {
+        "expr": "1/(1+pow(q/K,2))",
+        "tags": [
+          "repression",
+          "hill_2",
+          "gene_0",
+          "gene_0:repression",
+          "gene_0:hill_2"
+        ]
+      },
+      {
+        "expr": "q/(K+q)",
+        "tags": [
+          "activation",
+          "hill_1",
+          "gene_0",
+          "gene_0:activation",
+          "gene_0:hill_1"
+        ]
+      },
+      {
+        "expr": "pow(q,2)/(pow(K,2)+pow(q,2))",
+        "tags": [
+          "activation",
+          "hill_2",
+          "gene_0",
+          "gene_0:activation",
+          "gene_0:hill_2"
+        ]
+      }
+    ],
+    "Gene1(q,K)": [
+      {
+        "expr": "1/(1+q/K)",
+        "tags": [
+          "repression",
+          "hill_1",
+          "gene_1",
+          "gene_1:repression",
+          "gene_1:hill_1"
+        ]
+      },
+      {
+        "expr": "1/(1+pow(q/K,2))",
+        "tags": [
+          "repression",
+          "hill_2",
+          "gene_1",
+          "gene_1:repression",
+          "gene_1:hill_2"
+        ]
+      },
+      {
+        "expr": "q/(K+q)",
+        "tags": [
+          "activation",
+          "hill_1",
+          "gene_1",
+          "gene_1:activation",
+          "gene_1:hill_1"
+        ]
+      },
+      {
+        "expr": "pow(q,2)/(pow(K,2)+pow(q,2))",
+        "tags": [
+          "activation",
+          "hill_2",
+          "gene_1",
+          "gene_1:activation",
+          "gene_1:hill_2"
+        ]
+      }
+    ],
+    "Gene2(q,K)": [
+      {
+        "expr": "1/(1+q/K)",
+        "tags": [
+          "repression",
+          "hill_1",
+          "gene_2",
+          "gene_2:repression",
+          "gene_2:hill_1"
+        ]
+      },
+      {
+        "expr": "1/(1+pow(q/K,2))",
+        "tags": [
+          "repression",
+          "hill_2",
+          "gene_2",
+          "gene_2:repression",
+          "gene_2:hill_2"
+        ]
+      },
+      {
+        "expr": "q/(K+q)",
+        "tags": [
+          "activation",
+          "hill_1",
+          "gene_2",
+          "gene_2:activation",
+          "gene_2:hill_1"
+        ]
+      },
+      {
+        "expr": "pow(q,2)/(pow(K,2)+pow(q,2))",
+        "tags": [
+          "activation",
+          "hill_2",
+          "gene_2",
+          "gene_2:activation",
+          "gene_2:hill_2"
+        ]
+      }
+    ]
+  },
+  "rhs": {
+    "m0": "const.b+shape.a0*hole(Gene0,leaf.reg0,shape.K0)-const.dm*m0",
+    "p0": "const.kt*m0-const.dp*p0",
+    "m1": "const.b+shape.a1*hole(Gene1,leaf.reg1,shape.K1)-const.dm*m1",
+    "p1": "const.kt*m1-const.dp*p1",
+    "m2": "const.b+shape.a2*hole(Gene2,leaf.reg2,shape.K2)-const.dm*m2",
+    "p2": "const.kt*m2-const.dp*p2"
+  },
+  "expansion": {
+    "strategy": "enumerate",
+    "max_nodes": 220,
+    "max_depth": 24
+  },
+  "limits": {
+    "max_skeletons": 1000,
+    "max_variants": 10000,
+    "max_configurations": 1000000,
+    "max_derivations": 10000,
+    "max_seconds": 30
+  },
+  "retain": {
+    "global": {
+      "k": 20,
+      "unit": "resolved_structure"
+    },
+    "by_tag": {
+      "activation": 5,
+      "repression": 5,
+      "hill_2": 5,
+      "gene_0:activation": 3,
+      "gene_0:repression": 3
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "states": ["x0", "x1", "x2", "x3", "x4"],
+  "integration": {"method": "rk4", "dt": 0.01},
+  "leaves": {
+    "source": {"states": ["x0", "x1", "x2", "x3", "x4"], "arity": 2, "coverage": "all"},
+    "partner": {"states": ["x0", "x1", "x2", "x3", "x4"], "arity": 2, "coverage": "all"},
+    "feedback": {"states": ["x0", "x1", "x2", "x3", "x4"], "arity": 2, "coverage": "all"}
+  },
+  "toggle_sampling": {"count": 7, "seed": 321},
+  "rhs": {
+    "x0": "leaf.source*sin(leaf.partner)+cos(pow(leaf.feedback,2))",
+    "x1": "-x1", "x2": "-x2", "x3": "-x3", "x4": "-x4"
+  },
+  "limits": {"max_skeletons": 10, "max_variants": 10, "max_configurations": 100},
+  "retain": {"global": {"k": 5, "unit": "resolved_structure"}}
+}

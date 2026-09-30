@@ -1,0 +1,38 @@
+{
+  "01_gene_feedback.json": {
+    "unique_skeletons": 12,
+    "unique_variants": 12,
+    "configuration_visits": 2304,
+    "complete": true,
+    "stop_reason": "exhausted",
+    "max_fitted_parameters": 5
+  },
+  "02_reporter_maturation.json": {
+    "unique_skeletons": 4,
+    "unique_variants": 4,
+    "configuration_visits": 768,
+    "complete": true,
+    "stop_reason": "exhausted",
+    "max_fitted_parameters": 4
+  },
+  "03_gene_network.json": {
+    "unique_skeletons": 64,
+    "unique_variants": 1728,
+    "configuration_visits": 442368,
+    "complete": true,
+    "stop_reason": "exhausted",
+    "max_fitted_parameters": 6
+  },
+  "04_gene_network_sampled.json": {
+    "unique_skeletons": 64,
+    "unique_variants": 320,
+    "configuration_visits": 81920,
+    "complete": true,
+    "stop_reason": "exhausted",
+    "max_fitted_parameters": 6
+  },
+  "05_lm_request_template.json": {
+    "kind": "lm_template",
+    "fitted_dimension": 5
+  }
+}

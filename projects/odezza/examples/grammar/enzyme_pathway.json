@@ -1,0 +1,456 @@
+{
+  "version": 1,
+  "description": "Illustrative closed-batch four-metabolite, six-flux pathway. Select five kinetic laws independently for each flux, while sharing each selected flux across its stoichiometric appearances. All values use rescaled illustrative units, not measured data.",
+  "states": [
+    "s0",
+    "s1",
+    "s2",
+    "s3"
+  ],
+  "integration": {
+    "method": "rk4",
+    "dt": 0.01
+  },
+  "rng_banks": {
+    "unit_draws": {
+      "base": "uniform01",
+      "count": 64,
+      "seed": 117,
+      "scope": "run"
+    }
+  },
+  "constants": {
+    "K_0": {
+      "value": 0.5
+    },
+    "Ki_0": {
+      "value": 1.2
+    },
+    "K_1": {
+      "value": 0.6
+    },
+    "Ki_1": {
+      "value": 1.3
+    },
+    "K_2": {
+      "value": 0.7
+    },
+    "Ki_2": {
+      "value": 1.4
+    },
+    "K_3": {
+      "value": 0.8
+    },
+    "Ki_3": {
+      "value": 1.5
+    },
+    "K_4": {
+      "value": 0.9
+    },
+    "Ki_4": {
+      "value": 1.6
+    },
+    "K_5": {
+      "value": 1.0
+    },
+    "Ki_5": {
+      "value": 1.7
+    }
+  },
+  "rng": {
+    "a_0": {
+      "bank": "unit_draws",
+      "stream": "reaction_0_amplitude",
+      "axis": "trial",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.02,
+        "high": 0.5
+      }
+    },
+    "a_1": {
+      "bank": "unit_draws",
+      "stream": "reaction_1_amplitude",
+      "axis": "trial",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.02,
+        "high": 0.5
+      }
+    },
+    "a_2": {
+      "bank": "unit_draws",
+      "stream": "reaction_2_amplitude",
+      "axis": "trial",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.02,
+        "high": 0.5
+      }
+    },
+    "a_3": {
+      "bank": "unit_draws",
+      "stream": "reaction_3_amplitude",
+      "axis": "trial",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.02,
+        "high": 0.5
+      }
+    },
+    "a_4": {
+      "bank": "unit_draws",
+      "stream": "reaction_4_amplitude",
+      "axis": "trial",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.02,
+        "high": 0.5
+      }
+    },
+    "a_5": {
+      "bank": "unit_draws",
+      "stream": "reaction_5_amplitude",
+      "axis": "trial",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.02,
+        "high": 0.5
+      }
+    }
+  },
+  "parameters": {
+    "log_a_0": {
+      "initial": 0.0
+    },
+    "log_a_1": {
+      "initial": 0.0
+    },
+    "log_a_2": {
+      "initial": 0.0
+    },
+    "log_a_3": {
+      "initial": 0.0
+    },
+    "log_a_4": {
+      "initial": 0.0
+    },
+    "log_a_5": {
+      "initial": 0.0
+    }
+  },
+  "rules": {
+    "Rate0(s,i,K,Ki)": [
+      {
+        "expr": "s/K",
+        "tags": [
+          "mass_action",
+          "reaction_0:mass_action"
+        ]
+      },
+      {
+        "expr": "s/(K+s)",
+        "tags": [
+          "michaelis_menten",
+          "reaction_0:michaelis_menten"
+        ]
+      },
+      {
+        "expr": "(s*s)/(K*K+s*s)",
+        "tags": [
+          "cooperative",
+          "reaction_0:cooperative"
+        ]
+      },
+      {
+        "expr": "s/(K+s+(s*s)/Ki)",
+        "tags": [
+          "substrate_inhibition",
+          "reaction_0:substrate_inhibition"
+        ]
+      },
+      {
+        "expr": "(s/(K+s))/(1+i/Ki)",
+        "tags": [
+          "inhibited_saturation",
+          "reaction_0:inhibited_saturation"
+        ]
+      }
+    ],
+    "Rate1(s,i,K,Ki)": [
+      {
+        "expr": "s/K",
+        "tags": [
+          "mass_action",
+          "reaction_1:mass_action"
+        ]
+      },
+      {
+        "expr": "s/(K+s)",
+        "tags": [
+          "michaelis_menten",
+          "reaction_1:michaelis_menten"
+        ]
+      },
+      {
+        "expr": "(s*s)/(K*K+s*s)",
+        "tags": [
+          "cooperative",
+          "reaction_1:cooperative"
+        ]
+      },
+      {
+        "expr": "s/(K+s+(s*s)/Ki)",
+        "tags": [
+          "substrate_inhibition",
+          "reaction_1:substrate_inhibition"
+        ]
+      },
+      {
+        "expr": "(s/(K+s))/(1+i/Ki)",
+        "tags": [
+          "inhibited_saturation",
+          "reaction_1:inhibited_saturation"
+        ]
+      }
+    ],
+    "Rate2(s,i,K,Ki)": [
+      {
+        "expr": "s/K",
+        "tags": [
+          "mass_action",
+          "reaction_2:mass_action"
+        ]
+      },
+      {
+        "expr": "s/(K+s)",
+        "tags": [
+          "michaelis_menten",
+          "reaction_2:michaelis_menten"
+        ]
+      },
+      {
+        "expr": "(s*s)/(K*K+s*s)",
+        "tags": [
+          "cooperative",
+          "reaction_2:cooperative"
+        ]
+      },
+      {
+        "expr": "s/(K+s+(s*s)/Ki)",
+        "tags": [
+          "substrate_inhibition",
+          "reaction_2:substrate_inhibition"
+        ]
+      },
+      {
+        "expr": "(s/(K+s))/(1+i/Ki)",
+        "tags": [
+          "inhibited_saturation",
+          "reaction_2:inhibited_saturation"
+        ]
+      }
+    ],
+    "Rate3(s,i,K,Ki)": [
+      {
+        "expr": "s/K",
+        "tags": [
+          "mass_action",
+          "reaction_3:mass_action"
+        ]
+      },
+      {
+        "expr": "s/(K+s)",
+        "tags": [
+          "michaelis_menten",
+          "reaction_3:michaelis_menten"
+        ]
+      },
+      {
+        "expr": "(s*s)/(K*K+s*s)",
+        "tags": [
+          "cooperative",
+          "reaction_3:cooperative"
+        ]
+      },
+      {
+        "expr": "s/(K+s+(s*s)/Ki)",
+        "tags": [
+          "substrate_inhibition",
+          "reaction_3:substrate_inhibition"
+        ]
+      },
+      {
+        "expr": "(s/(K+s))/(1+i/Ki)",
+        "tags": [
+          "inhibited_saturation",
+          "reaction_3:inhibited_saturation"
+        ]
+      }
+    ],
+    "Rate4(s,i,K,Ki)": [
+      {
+        "expr": "s/K",
+        "tags": [
+          "mass_action",
+          "reaction_4:mass_action"
+        ]
+      },
+      {
+        "expr": "s/(K+s)",
+        "tags": [
+          "michaelis_menten",
+          "reaction_4:michaelis_menten"
+        ]
+      },
+      {
+        "expr": "(s*s)/(K*K+s*s)",
+        "tags": [
+          "cooperative",
+          "reaction_4:cooperative"
+        ]
+      },
+      {
+        "expr": "s/(K+s+(s*s)/Ki)",
+        "tags": [
+          "substrate_inhibition",
+          "reaction_4:substrate_inhibition"
+        ]
+      },
+      {
+        "expr": "(s/(K+s))/(1+i/Ki)",
+        "tags": [
+          "inhibited_saturation",
+          "reaction_4:inhibited_saturation"
+        ]
+      }
+    ],
+    "Rate5(s,i,K,Ki)": [
+      {
+        "expr": "s/K",
+        "tags": [
+          "mass_action",
+          "reaction_5:mass_action"
+        ]
+      },
+      {
+        "expr": "s/(K+s)",
+        "tags": [
+          "michaelis_menten",
+          "reaction_5:michaelis_menten"
+        ]
+      },
+      {
+        "expr": "(s*s)/(K*K+s*s)",
+        "tags": [
+          "cooperative",
+          "reaction_5:cooperative"
+        ]
+      },
+      {
+        "expr": "s/(K+s+(s*s)/Ki)",
+        "tags": [
+          "substrate_inhibition",
+          "reaction_5:substrate_inhibition"
+        ]
+      },
+      {
+        "expr": "(s/(K+s))/(1+i/Ki)",
+        "tags": [
+          "inhibited_saturation",
+          "reaction_5:inhibited_saturation"
+        ]
+      }
+    ]
+  },
+  "shapes": {
+    "amplitude_0": "rng.a_0*exp(theta.log_a_0)",
+    "flux_0": {
+      "expr": "shape.amplitude_0*hole(Rate0,s0,s3,const.K_0,const.Ki_0)",
+      "tags": [
+        "flux_0"
+      ]
+    },
+    "amplitude_1": "rng.a_1*exp(theta.log_a_1)",
+    "flux_1": {
+      "expr": "shape.amplitude_1*hole(Rate1,s1,s3,const.K_1,const.Ki_1)",
+      "tags": [
+        "flux_1"
+      ]
+    },
+    "amplitude_2": "rng.a_2*exp(theta.log_a_2)",
+    "flux_2": {
+      "expr": "shape.amplitude_2*hole(Rate2,s2,s0,const.K_2,const.Ki_2)",
+      "tags": [
+        "flux_2"
+      ]
+    },
+    "amplitude_3": "rng.a_3*exp(theta.log_a_3)",
+    "flux_3": {
+      "expr": "shape.amplitude_3*hole(Rate3,s0,s3,const.K_3,const.Ki_3)",
+      "tags": [
+        "flux_3"
+      ]
+    },
+    "amplitude_4": "rng.a_4*exp(theta.log_a_4)",
+    "flux_4": {
+      "expr": "shape.amplitude_4*hole(Rate4,s1,s2,const.K_4,const.Ki_4)",
+      "tags": [
+        "flux_4"
+      ]
+    },
+    "amplitude_5": "rng.a_5*exp(theta.log_a_5)",
+    "flux_5": {
+      "expr": "shape.amplitude_5*hole(Rate5,s3,s1,const.K_5,const.Ki_5)",
+      "tags": [
+        "flux_5"
+      ]
+    }
+  },
+  "families": [
+    {
+      "id": "enzyme_pathway",
+      "tags": [
+        "known_stoichiometry",
+        "closed_batch"
+      ],
+      "rhs": {
+        "s0": "-shape.flux_0-shape.flux_3",
+        "s1": "shape.flux_0-shape.flux_1-shape.flux_4",
+        "s2": "shape.flux_1+shape.flux_3-shape.flux_2",
+        "s3": "shape.flux_2-shape.flux_5"
+      }
+    }
+  ],
+  "expansion": {
+    "strategy": "enumerate",
+    "seed": 0,
+    "max_nodes": 600,
+    "max_depth": 30
+  },
+  "limits": {
+    "max_skeletons": 15625,
+    "max_variants": 15625,
+    "max_configurations": 1000000,
+    "max_derivations": 20000,
+    "max_expansion_steps": 10000000,
+    "max_seconds": 600
+  },
+  "retain": {
+    "global": {
+      "k": 20,
+      "unit": "resolved_structure"
+    },
+    "per_family": {
+      "k": 20,
+      "unit": "resolved_structure"
+    },
+    "by_tag": {
+      "reaction_0:substrate_inhibition": 5,
+      "reaction_0:inhibited_saturation": 5,
+      "reaction_3:mass_action": 5,
+      "reaction_3:michaelis_menten": 5,
+      "cooperative": 5
+    }
+  }
+}

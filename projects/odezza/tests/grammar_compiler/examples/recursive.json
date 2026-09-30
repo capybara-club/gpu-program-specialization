@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "states": ["x0", "x1"],
+  "integration": {"method": "rk4", "dt": 0.01},
+  "parameters": {"k": {"initial": 1.0}, "d": {"initial": 0.2}},
+  "rules": {
+    "E(z,v)": [
+      {"expr": "z", "tags": ["position"]},
+      {"expr": "v", "tags": ["velocity"]},
+      "sin(hole(E,z,v))",
+      "tanh(hole(E,z,v))",
+      "pow(hole(E,z,v),2)",
+      "hole(E,z,v)+hole(E,z,v)",
+      "hole(E,z,v)-hole(E,z,v)",
+      "hole(E,z,v)*hole(E,z,v)"
+    ]
+  },
+  "rhs": {"x0": "x1", "x1": "theta.k*hole(E,x0,x1)-theta.d*x1"},
+  "expansion": {"strategy": "sample", "seed": 42, "max_nodes": 31, "max_depth": 8, "max_expansion_depth": 8},
+  "limits": {"max_skeletons": 100, "max_variants": 100, "max_configurations": 100, "max_derivations": 10000, "max_expansion_steps": 1000000, "max_seconds": 20},
+  "retain": {"global": {"k": 10, "unit": "resolved_structure"}}
+}

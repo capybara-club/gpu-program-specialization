@@ -1,0 +1,186 @@
+#!/usr/bin/env bash
+# SPDX-FileCopyrightText: 2026 Charles Durham
+# SPDX-License-Identifier: MIT
+#
+# MIT License
+#
+# Copyright (c) 2026 Charles Durham
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+set -euo pipefail
+
+CLI="@STACK_PTX_EMIT_CLI_PATH@"
+PTX_RUNNER="@STACK_PTX_EMIT_PTX_RUNNER_PATH@"
+CC_BIN="@CMAKE_C_COMPILER@"
+NVCC_BIN="@CMAKE_CUDA_COMPILER@"
+RUSTC_BIN="@STACK_PTX_EMIT_RUSTC_EXECUTABLE@"
+PTX_KERNEL_PATH="@STACK_PTX_EMIT_SIMPLE_KERNEL_PTX@"
+
+COUNT=4
+SEED=7
+STEPS=12
+
+if [[ ! -x "$CLI" ]]; then
+    echo "Missing CLI executable: $CLI" >&2
+    exit 1
+fi
+
+if [[ ! -x "$PTX_RUNNER" ]]; then
+    echo "Missing PTX runner executable: $PTX_RUNNER" >&2
+    exit 1
+fi
+
+if [[ -z "$RUSTC_BIN" || ! -x "$RUSTC_BIN" ]]; then
+    echo "rustc not found; skipping" >&2
+    exit 77
+fi
+
+if [[ ! -x "$NVCC_BIN" ]]; then
+    echo "nvcc not found; skipping" >&2
+    exit 77
+fi
+
+tmpdir="$(mktemp -d)"
+trap 'rm -rf "$tmpdir"' EXIT
+
+"$CLI" -seed "$SEED" -N "$COUNT" --steps "$STEPS" --ptx-kernel "$PTX_KERNEL_PATH" -o "$tmpdir/stub" -ptx -c -rust -cuda > /dev/null
+
+for ((idx = 0; idx < COUNT; idx++)); do
+    printf -v num "%03d" "$idx"
+
+    c_runner="$tmpdir/run_${num}.c"
+    cat > "$c_runner" <<EOF
+#include <math.h>
+#include <stdint.h>
+#include <stdio.h>
+#include "$tmpdir/stub_${num}.c"
+
+int main(void) {
+    float v_x = 5.0f;
+    float v_y = 3.0f;
+    float v_z = 0.0f;
+    union {
+        float f;
+        uint32_t u;
+    } bits;
+    stack_ptx_stub_${num}(v_x, v_y, &v_z);
+    bits.f = v_z;
+    printf("0x%08X\n", (unsigned)bits.u);
+    return 0;
+}
+EOF
+
+    "$CC_BIN" -std=c99 -O2 -fno-fast-math -ffp-contract=off "$c_runner" -lm -o "$tmpdir/run_${num}_c"
+    "$tmpdir/run_${num}_c" > "$tmpdir/${num}.c.out"
+
+    rust_runner="$tmpdir/run_${num}.rs"
+    cat > "$rust_runner" <<EOF
+include!(r#"$tmpdir/stub_${num}.rs"#);
+
+fn main() {
+    let v_x: f32 = 5.0f32;
+    let v_y: f32 = 3.0f32;
+    let mut v_z: f32 = 0.0f32;
+    stack_ptx_stub_${num}(v_x, v_y, &mut v_z);
+    println!("0x{:08X}", v_z.to_bits());
+}
+EOF
+
+    "$RUSTC_BIN" "$rust_runner" -A warnings -C opt-level=2 -o "$tmpdir/run_${num}_rust"
+    "$tmpdir/run_${num}_rust" > "$tmpdir/${num}.rust.out"
+
+    cuda_runner="$tmpdir/run_${num}.cu"
+    cat > "$cuda_runner" <<EOF
+#include <stdlib.h>
+#include <cuda_runtime.h>
+#include <stdint.h>
+#include <stdio.h>
+#include "$tmpdir/stub_${num}.cu"
+
+static void cuda_check(cudaError_t error, const char* message) {
+    if (error != cudaSuccess) {
+        fprintf(stderr, "%s: %s\n", message, cudaGetErrorString(error));
+        exit(1);
+    }
+}
+
+__global__ void run_kernel(float* out) {
+    float v_x = 5.0f;
+    float v_y = 3.0f;
+    float v_z = 0.0f;
+    stack_ptx_stub_${num}(v_x, v_y, &v_z);
+    *out = v_z;
+}
+
+int main(void) {
+    float* d_out = NULL;
+    float h_out = 0.0f;
+    union {
+        float f;
+        uint32_t u;
+    } bits;
+
+    cuda_check(cudaMalloc((void**)&d_out, sizeof(float)), "cudaMalloc failed");
+    run_kernel<<<1, 1>>>(d_out);
+    cuda_check(cudaGetLastError(), "kernel launch failed");
+    cuda_check(cudaDeviceSynchronize(), "cudaDeviceSynchronize failed");
+    cuda_check(cudaMemcpy(&h_out, d_out, sizeof(float), cudaMemcpyDeviceToHost), "cudaMemcpy failed");
+    cuda_check(cudaFree(d_out), "cudaFree failed");
+
+    bits.f = h_out;
+    printf("0x%08X\n", (unsigned)bits.u);
+    return 0;
+}
+EOF
+
+    "$NVCC_BIN" -std=c++17 -O2 --fmad=false "$cuda_runner" -o "$tmpdir/run_${num}_cuda"
+    "$tmpdir/run_${num}_cuda" > "$tmpdir/${num}.cuda.out"
+
+    set +e
+    "$PTX_RUNNER" "$tmpdir/stub_${num}.ptx" > "$tmpdir/${num}.ptx.out"
+    status=$?
+    set -e
+    if [[ "$status" -eq 77 ]]; then
+        exit 77
+    fi
+    if [[ "$status" -ne 0 ]]; then
+        exit "$status"
+    fi
+
+    if ! cmp -s "$tmpdir/${num}.ptx.out" "$tmpdir/${num}.c.out"; then
+        echo "PTX vs C mismatch for stub ${num}" >&2
+        cat "$tmpdir/${num}.ptx.out" >&2
+        cat "$tmpdir/${num}.c.out" >&2
+        exit 1
+    fi
+
+    if ! cmp -s "$tmpdir/${num}.ptx.out" "$tmpdir/${num}.rust.out"; then
+        echo "PTX vs Rust mismatch for stub ${num}" >&2
+        cat "$tmpdir/${num}.ptx.out" >&2
+        cat "$tmpdir/${num}.rust.out" >&2
+        exit 1
+    fi
+
+    if ! cmp -s "$tmpdir/${num}.ptx.out" "$tmpdir/${num}.cuda.out"; then
+        echo "PTX vs CUDA mismatch for stub ${num}" >&2
+        cat "$tmpdir/${num}.ptx.out" >&2
+        cat "$tmpdir/${num}.cuda.out" >&2
+        exit 1
+    fi
+done

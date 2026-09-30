@@ -1,0 +1,71 @@
+# H100 AST-SASS module-load amortization sweep Release
+Thu Jul  9 11:23:39 UTC 2026
+NVIDIA H100 80GB HBM3, 9.0, 580.105.08
+CMAKE_BUILD_TYPE:STRING=Release
+CMAKE_C_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
+//ADVANCED property for variable: CMAKE_C_FLAGS_RELEASE
+CMAKE_C_FLAGS_RELEASE-ADVANCED:INTERNAL=1
+# variant=tile_static_mse ast_mode=alu-reduce sites_per_kernel=16 total_asts=4096 settings=1 rows=1 iters=1 check_rows=0
+
+# asts_per_module=16 modules=256 kernels_per_module=1
+variant=tile_static_mse ast_mode=alu_reduce modules=256 kernels_per_module=1 sites_per_kernel=16 asts=4096 settings=1 run_rows=1 run_iters=1
+nvrtc_seconds=0.240403 cubin_bytes=48432 inspect_sites=16
+patch_seconds=0.005532 asts_per_second=740418.307 patched_sites_per_second=740418.307 us_per_ast=1.351
+patch_registers sites=4096 max_original=62 max_expanded=63 max_patched=65
+module_load_seconds=0.013237 loaded_asts_per_second=309437.730 load_us_per_ast=3.232
+runtime_score_seconds=0.000844 row_evals=4096 row_evals_per_second=4.855e+06
+runtime_score_reduce_seconds=0.001704 row_evals=4096 row_evals_per_second=2.404e+06
+
+# asts_per_module=32 modules=128 kernels_per_module=2
+variant=tile_static_mse ast_mode=alu_reduce modules=128 kernels_per_module=2 sites_per_kernel=16 asts=4096 settings=1 run_rows=1 run_iters=1
+nvrtc_seconds=0.460041 cubin_bytes=92496 inspect_sites=32
+patch_seconds=0.005528 asts_per_second=740990.257 patched_sites_per_second=740990.257 us_per_ast=1.350
+patch_registers sites=4096 max_original=62 max_expanded=63 max_patched=65
+module_load_seconds=0.006719 loaded_asts_per_second=609639.115 load_us_per_ast=1.640
+runtime_score_seconds=0.000791 row_evals=4096 row_evals_per_second=5.176e+06
+runtime_score_reduce_seconds=0.001647 row_evals=4096 row_evals_per_second=2.486e+06
+
+# asts_per_module=64 modules=64 kernels_per_module=4
+variant=tile_static_mse ast_mode=alu_reduce modules=64 kernels_per_module=4 sites_per_kernel=16 asts=4096 settings=1 run_rows=1 run_iters=1
+nvrtc_seconds=0.906646 cubin_bytes=180624 inspect_sites=64
+patch_seconds=0.005532 asts_per_second=740415.229 patched_sites_per_second=740415.229 us_per_ast=1.351
+patch_registers sites=4096 max_original=62 max_expanded=63 max_patched=65
+module_load_seconds=0.004929 loaded_asts_per_second=831060.227 load_us_per_ast=1.203
+runtime_score_seconds=0.000790 row_evals=4096 row_evals_per_second=5.186e+06
+runtime_score_reduce_seconds=0.001655 row_evals=4096 row_evals_per_second=2.474e+06
+
+# asts_per_module=128 modules=32 kernels_per_module=8
+variant=tile_static_mse ast_mode=alu_reduce modules=32 kernels_per_module=8 sites_per_kernel=16 asts=4096 settings=1 run_rows=1 run_iters=1
+nvrtc_seconds=1.749574 cubin_bytes=356880 inspect_sites=128
+patch_seconds=0.005755 asts_per_second=711767.519 patched_sites_per_second=711767.519 us_per_ast=1.405
+patch_registers sites=4096 max_original=62 max_expanded=63 max_patched=65
+module_load_seconds=0.003797 loaded_asts_per_second=1078854.918 load_us_per_ast=0.927
+runtime_score_seconds=0.000814 row_evals=4096 row_evals_per_second=5.032e+06
+runtime_score_reduce_seconds=0.001664 row_evals=4096 row_evals_per_second=2.462e+06
+
+# asts_per_module=256 modules=16 kernels_per_module=16
+variant=tile_static_mse ast_mode=alu_reduce modules=16 kernels_per_module=16 sites_per_kernel=16 asts=4096 settings=1 run_rows=1 run_iters=1
+nvrtc_seconds=3.481711 cubin_bytes=709520 inspect_sites=256
+patch_seconds=0.005724 asts_per_second=715626.891 patched_sites_per_second=715626.891 us_per_ast=1.397
+patch_registers sites=4096 max_original=62 max_expanded=63 max_patched=65
+module_load_seconds=0.002611 loaded_asts_per_second=1568786.060 load_us_per_ast=0.637
+runtime_score_seconds=0.000785 row_evals=4096 row_evals_per_second=5.216e+06
+runtime_score_reduce_seconds=0.001668 row_evals=4096 row_evals_per_second=2.456e+06
+
+# asts_per_module=512 modules=8 kernels_per_module=32
+variant=tile_static_mse ast_mode=alu_reduce modules=8 kernels_per_module=32 sites_per_kernel=16 asts=4096 settings=1 run_rows=1 run_iters=1
+nvrtc_seconds=6.980575 cubin_bytes=1414544 inspect_sites=512
+patch_seconds=0.005794 asts_per_second=706993.244 patched_sites_per_second=706993.244 us_per_ast=1.414
+patch_registers sites=4096 max_original=62 max_expanded=63 max_patched=65
+module_load_seconds=0.002495 loaded_asts_per_second=1641499.150 load_us_per_ast=0.609
+runtime_score_seconds=0.000793 row_evals=4096 row_evals_per_second=5.165e+06
+runtime_score_reduce_seconds=0.001678 row_evals=4096 row_evals_per_second=2.441e+06
+
+# asts_per_module=1024 modules=4 kernels_per_module=64
+variant=tile_static_mse ast_mode=alu_reduce modules=4 kernels_per_module=64 sites_per_kernel=16 asts=4096 settings=1 run_rows=1 run_iters=1
+nvrtc_seconds=13.944023 cubin_bytes=2824592 inspect_sites=1024
+patch_seconds=0.006001 asts_per_second=682607.166 patched_sites_per_second=682607.166 us_per_ast=1.465
+patch_registers sites=4096 max_original=62 max_expanded=63 max_patched=65
+module_load_seconds=0.002499 loaded_asts_per_second=1638763.150 load_us_per_ast=0.610
+runtime_score_seconds=0.000786 row_evals=4096 row_evals_per_second=5.210e+06
+runtime_score_reduce_seconds=0.001654 row_evals=4096 row_evals_per_second=2.476e+06

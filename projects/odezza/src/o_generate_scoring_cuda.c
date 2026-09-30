@@ -1,0 +1,1 @@
+../core/o_generate_scoring_cuda.c

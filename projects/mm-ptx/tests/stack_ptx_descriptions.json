@@ -1,0 +1,124 @@
+{
+  "abi_version": 1,
+
+  "stack_types": [
+    { "name": "F32",    "literal_prefix": "f32", "constant_type": "f32",  "encoder_type": "f32" },
+    { "name": "U32",    "literal_prefix": "u32", "constant_type": "u32",  "encoder_type": "u32" },
+    { "name": "PHILOX", "literal_prefix": "u32", "constant_type": "u32",  "encoder_type": "u32" },
+    { "name": "S32",    "literal_prefix": "s32",                          "encoder_type": "s32" },
+    { "name": "PRED",   "literal_prefix": "pred" },
+    { "name": "TF32",   "literal_prefix": "b32"  },
+    { "name": "F16",    "literal_prefix": "b16"  },
+    { "name": "F16X2",  "literal_prefix": "b32"  },
+    { "name": "U8",     "literal_prefix": "u8"   }
+  ],
+
+  "arg_types": [
+    { "name": "F32",      "stack_type": "F32"                       },
+    { "name": "TF32",     "stack_type": "TF32"                      },
+    { "name": "V1_TF32",  "stack_type": "TF32", "num_vec_elems": 1  },
+    { "name": "V2_TF32",  "stack_type": "TF32", "num_vec_elems": 2  },
+    { "name": "V4_F32",   "stack_type": "F32",  "num_vec_elems": 4  },
+    { "name": "S32",      "stack_type": "S32"                       },
+    { "name": "U32",      "stack_type": "U32"                       },
+    { "name": "PHILOX",   "stack_type": "PHILOX"                    },
+    { "name": "V4_U32",   "stack_type": "U32",  "num_vec_elems": 4  },
+    { "name": "PRED",     "stack_type": "PRED"                      },
+    { "name": "F16",      "stack_type": "F16"                       },
+    { "name": "F16X2",    "stack_type": "F16X2"                     },
+    { "name": "V2_F16",   "stack_type": "F16",  "num_vec_elems":2   },
+    { "name": "U8",       "stack_type": "U8"                        },
+    { "name": "V4_U8",    "stack_type": "U8",   "num_vec_elems":4   }
+  ],
+
+  "instructions": [
+    { "ptx": "add.u32",             "args": ["U32", "U32"],         "rets": ["U32"]                             },
+    { "ptx": "sub.u32",             "args": ["U32", "U32"],         "rets": ["U32"]                             },
+    { "ptx": "mul.lo.u32",          "args": ["U32", "U32"],         "rets": ["U32"]                             },
+    { "ptx": "mad.lo.u32",          "args": ["U32", "U32", "U32"],  "rets": ["U32"]                             },
+    { "ptx": "add.u32",             "args": ["PHILOX","PHILOX"],    "rets": ["PHILOX"], "display": "add.philox"  },
+    { "ptx": "xor.b32",             "args": ["PHILOX", "PHILOX"],   "rets": ["PHILOX"], "display": "xor.philox"  },
+    { "ptx": "mov.b32",             "args": ["PHILOX"],             "rets": ["U32"],    "display": "mov.philox"  },
+    { "ptx": "mul.lo.u32",          "args": ["PHILOX", "PHILOX"],   "rets": ["PHILOX"], "display": "mul.lo.philox" },
+    { "ptx": "mul.hi.u32",          "args": ["PHILOX", "PHILOX"],   "rets": ["PHILOX"], "display": "mul.hi.philox" },
+
+    { "ptx": "copysign.f32",        "args": ["F32", "F32"],         "rets": ["F32"]                             },
+    { "ptx": "add.ftz.f32",         "args": ["F32", "F32"],         "rets": ["F32"]                             },
+    { "ptx": "sub.ftz.f32",         "args": ["F32", "F32"],         "rets": ["F32"]                             },
+    { "ptx": "mul.ftz.f32",         "args": ["F32", "F32"],         "rets": ["F32"]                             },
+    { "ptx": "fma.rn.ftz.f32",      "args": ["F32", "F32", "F32"],  "rets": ["F32"]                             },
+    { "ptx": "div.approx.ftz.f32",  "args": ["F32", "F32"],         "rets": ["F32"]                             },
+    { "ptx": "abs.ftz.f32",         "args": ["F32"],                "rets": ["F32"]                             },
+    { "ptx": "neg.ftz.f32",         "args": ["F32"],                "rets": ["F32"]                             },
+    { "ptx": "min.ftz.f32",         "args": ["F32", "F32"],         "rets": ["F32"]                             },
+    { "ptx": "max.ftz.f32",         "args": ["F32", "F32"],         "rets": ["F32"]                             },
+
+    { "ptx": "rcp.approx.ftz.f32",  "args": ["F32"],                "rets": ["F32"]                             },
+    { "ptx": "sqrt.approx.ftz.f32", "args": ["F32"],                "rets": ["F32"]                             },
+    { "ptx": "rsqrt.approx.ftz.f32","args": ["F32"],                "rets": ["F32"]                             },
+    { "ptx": "sin.approx.ftz.f32",  "args": ["F32"],                "rets": ["F32"]                             },
+    { "ptx": "cos.approx.ftz.f32",  "args": ["F32"],                "rets": ["F32"]                             },
+    { "ptx": "lg2.approx.ftz.f32",  "args": ["F32"],                "rets": ["F32"]                             },
+    { "ptx": "ex2.approx.ftz.f32",  "args": ["F32"],                "rets": ["F32"]                             },
+    { "ptx": "tanh.approx.f32",     "args": ["F32"],                "rets": ["F32"]                             },
+
+    { "ptx": "setp.lt.ftz.f32",     "args": ["F32", "F32"],         "rets": ["PRED"]                            },
+    { "ptx": "setp.eq.u32",         "args": ["U32", "U32"],         "rets": ["PRED"]                            },
+    { "ptx": "setp.ne.u32",         "args": ["U32", "U32"],         "rets": ["PRED"]                            },
+    { "ptx": "selp.f32",            "args": ["F32", "F32", "PRED"], "rets": ["F32"]                             },
+
+    { "ptx": "cvt.rna.tf32.f32",    "args": ["F32"],                "rets": ["TF32"]                            },
+    { "ptx": "cvt.rn.f32.u32",      "args": ["U32"],                "rets": ["F32"]                             },
+
+    { "ptx": "mma.sync.aligned.m16n8k4.row.col.f32.tf32.tf32.f32",  "args": ["V2_TF32", "V1_TF32", "V4_F32"], "rets":["V4_F32"], "aligned":true },
+
+    { "ptx": "mov.b32",             "args": ["F16X2"],              "rets": ["V2_F16"], "display": "f16x2_to_v2_f16"},
+    { "ptx": "cvt.f32.f16",         "args": ["F16"],                "rets": ["F32"],    "display": "f16_to_f32"},
+
+    { "ptx": "mov.b32",             "args": ["U32"],                "rets": ["V4_U8"],  "display":  "u32_to_v4_u8"},
+    { "ptx": "cvt.u32.u8",          "args": ["U8"],                 "rets": ["U32"]                               }
+  ],
+
+  "special_registers": [
+    { "ptx": "tid",               "arg_type": "V4_U32"                        },
+    { "ptx": "tid.x",             "arg_type": "U32"                           },
+    { "ptx": "tid.y",             "arg_type": "U32"                           },
+    { "ptx": "tid.z",             "arg_type": "U32"                           },
+
+    { "ptx": "ntid",              "arg_type": "V4_U32"                        },
+    { "ptx": "ntid.x",            "arg_type": "U32"                           },
+    { "ptx": "ntid.y",            "arg_type": "U32"                           },
+    { "ptx": "ntid.z",            "arg_type": "U32"                           },
+
+    { "ptx": "laneid",            "arg_type": "U32"                           },
+    { "ptx": "warpid",            "arg_type": "U32"                           },
+    { "ptx": "nwarpid",           "arg_type": "U32"                           },
+
+    { "ptx": "ctaid",             "arg_type": "V4_U32"                        },
+    { "ptx": "ctaid.x",           "arg_type": "U32"                           },
+    { "ptx": "ctaid.y",           "arg_type": "U32"                           },
+    { "ptx": "ctaid.z",           "arg_type": "U32"                           },
+
+    { "ptx": "nctaid",            "arg_type": "V4_U32"                        },
+    { "ptx": "nctaid.x",          "arg_type": "U32"                           },
+    { "ptx": "nctaid.y",          "arg_type": "U32"                           },
+    { "ptx": "nctaid.z",          "arg_type": "U32"                           },
+
+    { "ptx": "smid",              "arg_type": "U32"                           },
+    { "ptx": "nsmid",             "arg_type": "U32"                           },
+    { "ptx": "gridid",            "arg_type": "U32"                           },
+
+    { "ptx": "lanemask_eq",       "arg_type": "U32"                           },
+    { "ptx": "lanemask_le",       "arg_type": "U32"                           },
+    { "ptx": "lanemask_lt",       "arg_type": "U32"                           },
+    { "ptx": "lanemask_ge",       "arg_type": "U32"                           },
+    { "ptx": "lanemask_gt",       "arg_type": "U32"                           },
+
+    { "ptx": "clock",             "arg_type": "U32"                           },
+    { "ptx": "clock_hi",          "arg_type": "U32"                           },
+
+    { "ptx": "total_smem_size",   "arg_type": "U32"                           },
+    { "ptx": "aggr_smem_size",    "arg_type": "U32"                           },
+    { "ptx": "dynamic_smem_size", "arg_type": "U32"                           }
+  ]
+}

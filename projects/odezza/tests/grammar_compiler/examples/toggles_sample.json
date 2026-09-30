@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "states": ["x0", "x1", "x2", "x3", "x4", "x5"],
+  "integration": {"method": "rk4", "dt": 0.01},
+  "leaves": {
+    "source": {"states": ["x0", "x1", "x2", "x3", "x4", "x5"], "arity": 2, "coverage": "sample", "samples": 4, "seed": 101},
+    "partner": {"states": ["x0", "x1", "x2", "x3", "x4", "x5"], "arity": 4, "coverage": "sample", "samples": 3, "seed": 102}
+  },
+  "rhs": {
+    "x0": "leaf.source*sin(leaf.partner)+leaf.source",
+    "x1": "-x1", "x2": "-x2", "x3": "-x3", "x4": "-x4", "x5": "-x5"
+  },
+  "limits": {"max_skeletons": 10, "max_variants": 100, "max_configurations": 1000}
+}

@@ -1,0 +1,5 @@
+compile: backend=ast-patch cubin=277280 ast_features=32
+compile_wall_ms=2474.333638 backend=ast-patch
+runtime: backend=ast-patch settings=2048 folds=1 rows=131072 primitive_cols=32 iterations=5 warmup=8 grid=(2048,1,1) ctas_per_launch=2048 grid_launches=5 sm_90
+runtime_total_ms=2140.891113 avg_grid_launch_ms=428.178223 grid_launches_per_sec=2.335 settings_per_sec=4783.055 fold_tasks_per_sec=4783.055 rows_per_sec=626924588.399 feature_rows_per_sec=20061586828.754 tiles_per_sec=4897848.347 probe_y_sum= 11060.7324 probe_gram00= 0.00515416311 probe_x_sum0= 12.3399858 probe_xty0= 1.95713437
+cpu_wall_ms=2140.936666 cpu_wall_avg_grid_launch_ms=428.187333 cpu_grid_launches_per_sec=2.335

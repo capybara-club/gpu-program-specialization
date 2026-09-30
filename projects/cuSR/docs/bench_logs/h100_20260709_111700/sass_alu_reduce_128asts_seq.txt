@@ -1,0 +1,7 @@
+variant=tile_static_mse ast_mode=alu_reduce modules=1 kernels_per_module=8 sites_per_kernel=16 asts=128 settings=1024 run_rows=1048576 run_iters=30
+nvrtc_seconds=1.755069 cubin_bytes=356880 inspect_sites=128
+patch_seconds=0.000169 asts_per_second=756349.197 patched_sites_per_second=756349.197 us_per_ast=1.322
+patch_registers sites=128 max_original=62 max_expanded=63 max_patched=65
+module_load_seconds=0.000164 loaded_asts_per_second=778366.282 load_us_per_ast=1.285
+runtime_score_seconds=2.380073 row_evals=4123168604160 row_evals_per_second=1.732e+12
+runtime_score_reduce_seconds=2.462917 row_evals=4123168604160 row_evals_per_second=1.674e+12

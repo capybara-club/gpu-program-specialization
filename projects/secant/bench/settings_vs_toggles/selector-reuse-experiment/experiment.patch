@@ -1,0 +1,326 @@
+--- a/s_cubin_specialize.c
++++ b/s_cubin_specialize.c
+@@ -14,6 +14,20 @@
+     uint8_t barrier_slot;
+     uint32_t barrier_token;
+ } _SecantCubinOperand;
++
++/* Compiler-local CSE, never a cross-row or cross-request value cache. Keys use
++ * exact bytecode (including literal bits and ordered selector bit IDs). Only
++ * repeated direct selectors are candidates; at most eight values stay live. */
++#define _SECANT_SELECTOR_KEY_BYTES 23u
++#define _SECANT_SELECTOR_CANDIDATES 64u
++#define _SECANT_SELECTOR_VALUES 8u
++typedef struct _SecantCubinSelector {
++    uint8_t key[_SECANT_SELECTOR_KEY_BYTES];
++    size_t size;
++    size_t uses;
++    _SecantCubinOperand value;
++    int ready;
++} _SecantCubinSelector;
+ 
+ typedef struct _SecantCubinAssembler {
+     const _SecantCubinSite* toggle_site;
+@@ -32,6 +46,9 @@
+     uint32_t barrier_slot_token[_SECANT_CUBIN_BARRIER_SLOTS];
+     uint32_t next_barrier_token;
+     uint32_t pending_wait_mask;
++    _SecantCubinSelector selectors[_SECANT_SELECTOR_CANDIDATES];
++    size_t num_selectors;
++    size_t num_selected_values;
+ } _SecantCubinAssembler;
+ 
+ static uint64_t
+@@ -1161,16 +1178,88 @@
+     _secant_cubin_release_consumed(a, left, right, *out);
+     return SECANT_SUCCESS;
+ }
+-static SecantResult _secant_cubin_emit_toggle(_SecantCubinAssembler *a, const uint8_t *bits, size_t count) {
++/* This bounded lookahead is an optimization only. The ordinary compiler below
++ * still validates every instruction, including routines and rejected programs. */
++static void _secant_cubin_plan_selectors(_SecantCubinAssembler *a,
++    const SecantAstInstruction *const *asts, size_t num_asts) {
++    size_t ast, i, j, kept;
++    for (ast = 0; ast < num_asts; ++ast) {
++        const uint8_t *p = asts[ast], *direct[4] = {NULL, NULL, NULL, NULL};
++        if (!p) continue;
++        for (i = 0; i < SECANT_AST_MAX_PROGRAM_INSTRUCTIONS; ++i) {
++            size_t width = secant_ast_instruction_size_get(p);
++            uint8_t op = secant_ast_instruction_type_get(p);
++            size_t count = op == SECANT_AST_INSTRUCTION_TYPE_TOGGLE2_F32 ? 2u :
++                (op == SECANT_AST_INSTRUCTION_TYPE_TOGGLE4_F32 ? 4u : 0u);
++            if (!width || op == SECANT_AST_INSTRUCTION_TYPE_RETURN_F32) break;
++            if (count && direct[4 - count]) {
++                const uint8_t *key = direct[4 - count];
++                size_t size = (size_t)(p + width - key);
++                if (size <= _SECANT_SELECTOR_KEY_BYTES) {
++                    for (j = 0; j < a->num_selectors; ++j)
++                        if (a->selectors[j].size == size &&
++                            !memcmp(a->selectors[j].key, key, size)) break;
++                    if (j < a->num_selectors) ++a->selectors[j].uses;
++                    else if (j < _SECANT_SELECTOR_CANDIDATES) {
++                        memcpy(a->selectors[j].key, key, size);
++                        a->selectors[j].size = size;
++                        a->selectors[j].uses = 1;
++                        ++a->num_selectors;
++                    }
++                }
++            }
++            if (op == SECANT_AST_INSTRUCTION_TYPE_COLUMN_F32 ||
++                op == SECANT_AST_INSTRUCTION_TYPE_BANK_CONSTANT_F32 ||
++                op == SECANT_AST_INSTRUCTION_TYPE_CONSTANT_BITS_F32) {
++                for (j = 0; j < 3; ++j) direct[j] = direct[j + 1];
++                direct[3] = p;
++            } else memset(direct, 0, sizeof(direct));
++            p += width;
++        }
++    }
++    for (kept = 0; kept < a->num_selectors && kept < _SECANT_SELECTOR_VALUES; ++kept) {
++        size_t best = kept;
++        _SecantCubinSelector swap;
++        for (j = kept + 1; j < a->num_selectors; ++j)
++            if (a->selectors[j].uses > a->selectors[best].uses) best = j;
++        if (a->selectors[best].uses < 2) break;
++        swap = a->selectors[kept];
++        a->selectors[kept] = a->selectors[best];
++        a->selectors[best] = swap;
++    }
++    a->num_selectors = kept;
++}
++
++static SecantResult _secant_cubin_emit_toggle(_SecantCubinAssembler *a, const uint8_t *bits,
++    size_t count, const uint8_t *key, size_t key_size) {
+     _SecantCubinOperand leaves[4], low, high, result;
++    _SecantCubinSelector *entry = NULL;
+     size_t i;
+     if (!a->toggle_site || bits[0] >= 32 || (count == 4 && (bits[1] >= 32 || bits[0] == bits[1])))
+         return SECANT_ERROR_BAD_PROGRAM;
+     for (i = count; i; --i) _SECANT_CUBIN_CHECK_RET(_secant_cubin_pop(a, leaves + i - 1));
++    for (i = 0; i < a->num_selectors; ++i)
++        if (a->selectors[i].size == key_size && !memcmp(a->selectors[i].key, key, key_size)) {
++            entry = a->selectors + i;
++            break;
++        }
++    if (entry && entry->ready) return _secant_cubin_push(a, entry->value);
+     _SECANT_CUBIN_CHECK_RET(_secant_cubin_select(a, leaves[0], leaves[1], bits[0], &low));
+-    if (count == 2) return _secant_cubin_push(a, low);
+-    _SECANT_CUBIN_CHECK_RET(_secant_cubin_select(a, leaves[2], leaves[3], bits[0], &high));
+-    _SECANT_CUBIN_CHECK_RET(_secant_cubin_select(a, low, high, bits[1], &result));
++    result = low;
++    if (count == 4) {
++        _SECANT_CUBIN_CHECK_RET(_secant_cubin_select(a, leaves[2], leaves[3], bits[0], &high));
++        _SECANT_CUBIN_CHECK_RET(_secant_cubin_select(a, low, high, bits[1], &result));
++    }
++    /* Leave eight reusable scratch registers for arithmetic. Caching does not
++     * itself allocate extra registers or change any arithmetic operation. */
++    if (entry && result.owned && a->num_free_registers >= 8 &&
++        a->num_selected_values < _SECANT_SELECTOR_VALUES) {
++        _secant_cubin_reserve_register(a, result.reg);
++        result.owned = 0;
++        entry->value = result;
++        entry->ready = 1;
++        ++a->num_selected_values;
++    }
+     return _secant_cubin_push(a, result);
+ }
+ 
+@@ -1193,6 +1282,7 @@
+     size_t instruction_count;
+     size_t instruction_offset = 0u;
+     size_t recent_direct = 0u;
++    const uint8_t *direct[4] = {NULL, NULL, NULL, NULL};
+ 
+     if (instructions == NULL) {
+         _SECANT_CUBIN_ERROR_RET(SECANT_ERROR_BAD_PROGRAM);
+@@ -1230,7 +1320,8 @@
+             case SECANT_AST_INSTRUCTION_TYPE_TOGGLE4_F32: {
+                 size_t count = instruction_type == SECANT_AST_INSTRUCTION_TYPE_TOGGLE2_F32 ? 2 : 4;
+                 if (recent_direct < count) return SECANT_ERROR_BAD_PROGRAM;
+-                _SECANT_CUBIN_CHECK_RET(_secant_cubin_emit_toggle(assembler, instruction + 1, count));
++                _SECANT_CUBIN_CHECK_RET(_secant_cubin_emit_toggle(assembler, instruction + 1, count,
++                    direct[4 - count], (size_t)(instruction + instruction_size - direct[4 - count])));
+                 break;
+             }
+             case SECANT_AST_INSTRUCTION_TYPE_CONSTANT_BITS_F32: {
+@@ -1318,8 +1409,15 @@
+         }
+         if (instruction_type == SECANT_AST_INSTRUCTION_TYPE_COLUMN_F32 ||
+             instruction_type == SECANT_AST_INSTRUCTION_TYPE_BANK_CONSTANT_F32 ||
+-            instruction_type == SECANT_AST_INSTRUCTION_TYPE_CONSTANT_BITS_F32) ++recent_direct;
+-        else recent_direct = 0;
++            instruction_type == SECANT_AST_INSTRUCTION_TYPE_CONSTANT_BITS_F32) {
++            size_t j;
++            ++recent_direct;
++            for (j = 0; j < 3; ++j) direct[j] = direct[j + 1];
++            direct[3] = instruction;
++        } else {
++            recent_direct = 0;
++            memset(direct, 0, sizeof(direct));
++        }
+         instruction_offset += instruction_size;
+     }
+     _SECANT_CUBIN_ERROR_RET(SECANT_ERROR_BAD_PROGRAM);
+@@ -1438,6 +1536,7 @@
+     const SecantAstInstruction* const* asts,
+     size_t num_asts,
+     const _SecantCubinSite* toggle_site,
++    int reuse_selectors,
+     unsigned char* code,
+     size_t sass_capacity,
+     size_t* sass_count_ret,
+@@ -1490,6 +1589,8 @@
+         &assembler,
+         available_registers,
+         num_available_registers);
++    if (toggle_site && reuse_selectors)
++        _secant_cubin_plan_selectors(&assembler, asts, num_asts);
+     for (ast_idx = 0u; ast_idx < num_asts; ++ast_idx) {
+         _SecantCubinOperand prediction;
+ 
+@@ -1815,34 +1916,44 @@
+         if (kernel_num_asts != 0u &&
+             (plan->shape == _SECANT_CUBIN_SHAPE_SSE || plan->shape == _SECANT_CUBIN_SHAPE_TOGGLE_SSE)) {
+             size_t num_sse_registers;
++            int reuse;
++            SecantResult generated = SECANT_SUCCESS;
+ 
+             if (!_secant_cubin_checked_mul(kernel_num_asts, site->num_target_regs, &num_sse_registers)) {
+                 _SECANT_CUBIN_ERROR_RET(SECANT_ERROR_OVERFLOW);
+             }
+-            _SECANT_CUBIN_CHECK_RET(_secant_cubin_generate_sse_sass(
+-                site->input_regs,
+-                site->num_input_regs,
+-                plan->shape,
+-                num_static_column_registers,
+-                site->target_regs,
+-                site->num_target_regs,
+-                site->available_regs,
+-                site->num_available_regs,
+-                site->output_regs,
+-                num_sse_registers,
+-                site->incoming_wait_mask,
+-                kernel->register_count,
+-                routines,
+-                num_routines,
+-                routine_num_args,
+-                asts + first_ast,
+-                kernel_num_asts,
+-                plan->shape == _SECANT_CUBIN_SHAPE_TOGGLE_SSE ? site : NULL,
+-                site_code,
+-                site->num_instructions,
+-                &sass_count,
+-                &expanded_register_count
+-            ));
++            /* CSE must never make an otherwise compilable program fail from
++             * register or patch pressure. Retry this patch without retained values. */
++            for (reuse = 1; reuse >= 0; --reuse) {
++                generated = _secant_cubin_generate_sse_sass(
++                    site->input_regs,
++                    site->num_input_regs,
++                    plan->shape,
++                    num_static_column_registers,
++                    site->target_regs,
++                    site->num_target_regs,
++                    site->available_regs,
++                    site->num_available_regs,
++                    site->output_regs,
++                    num_sse_registers,
++                    site->incoming_wait_mask,
++                    kernel->register_count,
++                    routines,
++                    num_routines,
++                    routine_num_args,
++                    asts + first_ast,
++                    kernel_num_asts,
++                    plan->shape == _SECANT_CUBIN_SHAPE_TOGGLE_SSE ? site : NULL,
++                    reuse,
++                    site_code,
++                    site->num_instructions,
++                    &sass_count,
++                    &expanded_register_count
++                );
++                if (generated != SECANT_ERROR_REGISTER_OVERFLOW &&
++                    generated != SECANT_ERROR_INSUFFICIENT_PATCH_SPACE) break;
++            }
++            _SECANT_CUBIN_CHECK_RET(generated);
+         } else if (kernel_num_asts != 0u && plan->shape == _SECANT_CUBIN_SHAPE_AFFINE_STATS) {
+             _SECANT_CUBIN_CHECK_RET(_secant_cubin_generate_affine_stats_sass(
+                 site->input_regs,
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -60,7 +60,7 @@
+     endif()
+     add_test(NAME secant_runner_failure_test COMMAND secant_runner_failure_test)
+     set_tests_properties(secant_runner_failure_test PROPERTIES TIMEOUT 30)
+-    foreach(name cpu c_header cpp_header ast_internal toggle)
++    foreach(name cpu c_header cpp_header ast_internal toggle selector_reuse)
+         if(name STREQUAL "cpp_header")
+             set(ext cpp)
+         else()
+--- /dev/null
++++ b/tests/selector_reuse_test.c
+@@ -0,0 +1,64 @@
++/* White-box compiler regression: no CUDA device is needed to check CSE keys,
++ * instruction counts, ownership, and register-pressure behavior. */
++#include "../s_cubin_specialize.c"
++#include <stdio.h>
++#include <stdlib.h>
++#define CHECK(x) do { if (!(x)) { fprintf(stderr, "line %d: %s\n", __LINE__, #x); exit(1); } } while (0)
++#define COL(i) secant_ast_encode_column_f32(i)
++#define BANK(i) secant_ast_encode_bank_constant_f32(i)
++#define TOG(i) secant_ast_encode_toggle2_f32(i)
++#define FOUR(i,j) secant_ast_encode_toggle4_f32(i,j)
++#define RET secant_ast_encode_return_f32
++static size_t compile(const uint8_t *const *asts, size_t n, int reuse, size_t scratch,
++                      size_t *instructions, uint32_t *regs) {
++    uint8_t inputs[] = {0, 1, 2, 3}, targets[] = {4}, accum[32], free_regs[40];
++    unsigned char code[4096 * 16];
++    _SecantCubinSite site;
++    size_t i, selects = 0;
++    memset(&site, 0, sizeof(site));
++    site.permutation_reg = 5;
++    site.predicate_reg = 0;
++    /* An inspected predicate instruction's payload is immaterial to counting
++     * selectors; GPU tests exercise real inspected instructions. */
++    for (i = 0; i < 32; ++i) accum[i] = (uint8_t)(6 + i);
++    for (i = 0; i < scratch; ++i) free_regs[i] = (uint8_t)(38 + i);
++    CHECK(_secant_cubin_generate_sse_sass(inputs, 4, _SECANT_CUBIN_SHAPE_TOGGLE_SSE,
++        2, targets, 1, free_regs, scratch, accum, n, 0, (uint32_t)(38 + scratch),
++        NULL, 0, NULL, asts, n, &site, reuse, code, 4096, instructions, regs) == SECANT_SUCCESS);
++    for (i = 0; i < *instructions; ++i) {
++        uint64_t word;
++        memcpy(&word, code + i * 16, sizeof(word));
++        selects += (word & 0xffffu) == _SECANT_CUBIN_OPCODE_FSEL;
++    }
++    return selects;
++}
++int main(void) {
++    const uint8_t two[] = {COL(0), BANK(0), TOG(0), RET};
++    const uint8_t other_bit[] = {COL(0), BANK(0), TOG(1), RET};
++    const uint8_t reversed[] = {BANK(0), COL(0), TOG(0), RET};
++    const uint8_t four[] = {COL(0), COL(1), BANK(0), BANK(1), FOUR(0, 1), RET};
++    const uint8_t swapped[] = {COL(0), COL(1), BANK(0), BANK(1), FOUR(1, 0), RET};
++    const uint8_t plus_zero[] = {secant_ast_encode_constant_f32_bits(0), COL(0), TOG(0), RET};
++    const uint8_t minus_zero[] = {secant_ast_encode_constant_f32_bits(0x80000000u), COL(0), TOG(0), RET};
++    const uint8_t arithmetic[] = {COL(0), BANK(0), TOG(0), COL(0), BANK(0), TOG(0),
++        secant_ast_encode_mul_f32, secant_ast_encode_sin_f32, RET};
++    const uint8_t *asts[32];
++    size_t i, old_count, new_count;
++    uint32_t old_regs, new_regs;
++    for (i = 0; i < 8; ++i) asts[i] = arithmetic;
++    CHECK(compile(asts, 8, 0, 24, &old_count, &old_regs) == 16);
++    CHECK(compile(asts, 8, 1, 24, &new_count, &new_regs) == 1);
++    CHECK(new_count < old_count && new_regs <= old_regs);
++    /* No spare-register budget: keep the ordinary implementation. */
++    CHECK(compile(asts, 8, 1, 0, &new_count, &new_regs) == 16);
++    asts[0] = two; asts[1] = other_bit; asts[2] = reversed;
++    asts[3] = four; asts[4] = swapped; asts[5] = plus_zero; asts[6] = minus_zero;
++    for (i = 0; i < 7; ++i) asts[7+i] = asts[i];
++    CHECK(compile(asts, 14, 0, 24, &old_count, &old_regs) == 22);
++    CHECK(compile(asts, 14, 1, 24, &new_count, &new_regs) == 11);
++    /* A subsequent patch has no retained values from this one. */
++    asts[0] = four;
++    CHECK(compile(asts, 1, 1, 24, &new_count, &new_regs) == 3);
++    puts("selector CSE identity, instruction reuse, register budget and patch isolation passed");
++    return 0;
++}

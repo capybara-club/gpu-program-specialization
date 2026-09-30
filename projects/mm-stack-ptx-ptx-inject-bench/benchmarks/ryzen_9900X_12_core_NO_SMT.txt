@@ -1,0 +1,25 @@
+CPU: AMD Ryzen 9 9900X 12-Core Processor (12) @ 5.66 GHz
+PTX version:                              9.1
+nvPTXCompiler API:                       13.1
+SM (PTX):                                 8.0
+SM (cubin):                               8.0
+Modules:                                  128
+Programs per module:                     2048
+Total programs:                        262144
+Kernels:                                   16
+Groups per kernel:                        128
+Tile size:                                256
+Embed dims:                                 1
+Input dims:                                 1
+Input type:                               F32
+PTX instructions per program:              32
+Program execution limit:                  100
+Workspace bytes/thread:               8394688
+Threads:                                   12
+Wall time (ms):                      3904.691
+Modules/sec:                            32.78
+Modules/sec/thread:                      2.73
+Full compile (us/prog):                14.895
+Full compile (us/prog/thread):        178.743
+Full compile (progs/sec):            67135.66
+Full compile (progs/sec/thread):      5594.64

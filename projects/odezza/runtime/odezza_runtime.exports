@@ -1,0 +1,18 @@
+ODEZZA_RUNTIME_1 {
+  global:
+        odz_runtime_create;
+        odz_runtime_create_devices;
+        odz_runtime_attempt_inputs;
+        odz_runtime_host_limit;
+        odz_runtime_reserve_buffers;
+        odz_job_status;
+        odz_runtime_error;
+        odz_runtime_destroy;
+        odz_job_create;
+        odz_job_create_borrowed;
+        odz_job_run;
+        odz_job_cancel;
+        odz_job_report;
+        odz_job_destroy;
+    local: *;
+};

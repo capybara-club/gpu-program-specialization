@@ -1,0 +1,11 @@
+{
+  "name": "ODEZZA_WORK_V1",
+  "subjects": ["odezza.work.v1.>"],
+  "retention": "workqueue",
+  "storage": "memory",
+  "discard": "new",
+  "max_msgs": 256,
+  "max_bytes": 268435456,
+  "max_msg_size": 1048576,
+  "num_replicas": 1
+}

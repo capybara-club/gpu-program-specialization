@@ -1,0 +1,33 @@
+{
+  "schema": "odezza.lm-tuning.v1",
+  "name": "lm_tuning_20260909",
+  "deadline_utc": "2026-09-10T11:30:00Z",
+  "hosts": ["rack1", "rohini", "ada"],
+  "pilot": {"count": 10, "seconds": 300},
+  "generation": {
+    "states": [3, 4, 6, 8], "depths": [2, 3],
+    "dependencies": [1, 2, 3, 4], "known_dependencies": [1, 2, 3],
+    "parameters": [1, 2, 3, 4, 6],
+    "backgrounds": ["random", "linear_control"],
+    "views": ["dense", "sparse", "sparse_hidden"],
+    "durations": [0.5, 1.0],
+    "unary": ["sin", "cos"], "binary": ["add", "sub", "mul", "div"],
+    "constants": {"min": -1.0, "max": 1.0},
+    "attempts": 200, "seconds_per_case": 60
+  },
+  "fit": {
+    "starts": [1, 4, 16, 64, 256, 4096, 16384, 65536], "candidates": [1, 4, 16, 64],
+    "iterations": [8, 16, 32], "toggle_width": [1, 2, 4],
+    "initial_damping": [0.0001, 0.001, 0.01], "damping_attempts": [4, 8, 16],
+    "max_step": [0.25, 0.4, 1.0], "batch_size": [128, 1024, 4096], "seconds": [45]
+  },
+  "search": {
+    "initial": [16384, 65536, 262144], "banks": [256, 1024, 4096],
+    "wave": [16384, 65536, 125000], "generation_limit": [4, 16, 64],
+    "parents": [256, 1024, 4096], "candidates": [16, 64, 128],
+    "starts": [1, 4, 16], "iterations": [8, 16, 32], "fit_seconds": [10, 20, 40],
+    "toggle_width": [2, 4], "initial_damping": [0.0001, 0.001, 0.01],
+    "damping_attempts": [4, 8], "max_step": [0.25, 0.4, 1.0], "seconds": [180]
+  },
+  "schedule": {"design_seed": 9102026, "fit_groups_per_case": 4, "recovery_every_cases": 3, "prefetch_per_lane": 2}
+}

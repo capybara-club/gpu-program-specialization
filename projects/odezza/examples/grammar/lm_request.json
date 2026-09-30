@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "kind": "lm",
+  "states": ["x0", "x1"],
+  "candidate_ids": ["replace-with-an-engine-candidate-id"],
+  "parameters": ["k", "d"],
+  "settings": {"max_iterations": 50, "damping": 0.001, "tolerance": 1e-8}
+}

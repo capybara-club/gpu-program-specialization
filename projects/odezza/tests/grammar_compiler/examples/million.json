@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "states": ["x0", "x1", "x2", "x3", "x4", "x5"],
+  "integration": {"method": "rk4", "dt": 0.01},
+  "rules": {
+    "Response(z)": [
+      "z", "sin(z)", "cos(z)", "tanh(z)", "pow(z,2)",
+      "z/(1+pow(z,2))", "sin(pow(z,2))", "cos(pow(z,2))", "tanh(pow(z,2))", "sin(tanh(z))"
+    ]
+  },
+  "rhs": {
+    "x0": "hole(Response,x0)", "x1": "hole(Response,x1)", "x2": "hole(Response,x2)",
+    "x3": "hole(Response,x3)", "x4": "hole(Response,x4)", "x5": "hole(Response,x5)"
+  },
+  "expansion": {"strategy": "enumerate", "max_nodes": 63, "max_depth": 12},
+  "limits": {"max_skeletons": 1000000, "max_variants": 1000000, "max_configurations": 1000000, "max_derivations": 1000000, "max_expansion_steps": 100000000, "max_seconds": 3600},
+  "retain": {"global": {"k": 20, "unit": "resolved_structure"}}
+}

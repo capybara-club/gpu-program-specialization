@@ -1,0 +1,241 @@
+<!--
+SPDX-FileCopyrightText: 2026 Charles Durham
+SPDX-License-Identifier: MIT
+
+MIT License
+
+Copyright (c) 2026 Charles Durham
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stack PTX Emit Linear Regression</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  {% if backend_views %}
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  {% endif %}
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <h1>Stack PTX Emit Linear Regression</h1>
+      <p>Generate random Stack PTX feature programs, emit hard-coded regression functions, and inspect every selected backend.</p>
+      <p class="meta">Generator: <code>{{ cli_path }}</code></p>
+    </header>
+
+    <section class="panel">
+      <h2>Generation Settings</h2>
+      <form method="post" class="settings-form">
+        <div class="field-grid">
+          <label>
+            <span>Seed</span>
+            <input type="number" name="seed" value="{{ form_state.seed }}">
+          </label>
+          <label>
+            <span>Input Dim</span>
+            <input type="number" name="input_dim" value="{{ form_state.input_dim }}">
+          </label>
+          <label>
+            <span>Features</span>
+            <input type="number" name="num_features" value="{{ form_state.num_features }}">
+          </label>
+          <label>
+            <span>Steps / Feature</span>
+            <input type="number" name="steps" value="{{ form_state.steps }}">
+          </label>
+          <label>
+            <span>Protected Epsilon</span>
+            <input type="number" step="any" name="eps" value="{{ form_state.eps }}">
+          </label>
+          <label>
+            <span>Function Name</span>
+            <input type="text" name="function_name" value="{{ form_state.function_name }}">
+          </label>
+          <label>
+            <span>Markdown Factor Bytes</span>
+            <input type="number" name="markdown_factor_expression_min_bytes" value="{{ form_state.markdown_factor_expression_min_bytes }}">
+          </label>
+        </div>
+
+        <label class="field-block">
+          <span>Input Names CSV</span>
+          <input type="text" name="input_names" value="{{ form_state.input_names }}" placeholder="age,income,score,balance">
+        </label>
+
+        <div class="field-block">
+          <span>Backends</span>
+          <div class="checkbox-grid">
+            {% for backend in supported_backends %}
+            <label class="checkbox">
+              <input
+                type="checkbox"
+                name="backends"
+                value="{{ backend }}"
+                {% if backend in form_state.backends %}checked{% endif %}
+              >
+              <span>{{ backend }}</span>
+            </label>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="field-block">
+          <span>Allowed Functions</span>
+          <p class="meta">Protected epsilon applies to <code>rcp</code>, <code>sqrt</code>, <code>rsqrt</code>, <code>log2</code>, <code>exp2</code>, and <code>div</code>.</p>
+          <div class="checkbox-grid">
+            {% for function in supported_functions %}
+            <label class="checkbox">
+              <input
+                type="checkbox"
+                name="allowed_functions"
+                value="{{ function.name }}"
+                {% if function.name in form_state.allowed_functions %}checked{% endif %}
+              >
+              <span>{{ function.name }}{% if function.arity == 3 %} (ternary){% elif function.arity == 2 %} (binary){% endif %}</span>
+            </label>
+            {% endfor %}
+          </div>
+        </div>
+
+        <label class="checkbox inline-checkbox">
+          <input type="checkbox" name="show_spec" value="1" {% if form_state.show_spec %}checked{% endif %}>
+          <span>Emit backend spec comments when supported</span>
+        </label>
+
+        <div class="actions">
+          <button type="submit">Generate</button>
+        </div>
+      </form>
+    </section>
+
+    {% if error %}
+    <section class="panel error-panel">
+      <h2>Error</h2>
+      <pre>{{ error }}</pre>
+    </section>
+    {% endif %}
+
+    {% if result %}
+    <section class="panel">
+      <h2>Request Summary</h2>
+      <div class="summary-grid">
+        <div>
+          <strong>Seed</strong>
+          <div>{{ result.request.seed }}</div>
+        </div>
+        <div>
+          <strong>Input Dim</strong>
+          <div>{{ result.request.input_dim }}</div>
+        </div>
+        <div>
+          <strong>Features</strong>
+          <div>{{ result.request.num_features }}</div>
+        </div>
+        <div>
+          <strong>Steps</strong>
+          <div>{{ result.request.steps }}</div>
+        </div>
+        <div>
+          <strong>Protected Epsilon</strong>
+          <div>{{ result.request.eps }}</div>
+        </div>
+      </div>
+      <div class="field-block">
+        <strong>Allowed Functions</strong>
+        <div>{{ result.request.allowed_functions | join(", ") }}</div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Regression Coefficients</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>j</th>
+              <th>Mean</th>
+              <th>Stddev</th>
+              <th>Beta Standardized</th>
+              <th>Beta Unstandardized</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for j in range(result.regression.means|length) %}
+            <tr>
+              <td>{{ j + 1 }}</td>
+              <td>{{ result.regression.means[j] }}</td>
+              <td>{{ result.regression.stddevs[j] }}</td>
+              <td>{{ result.regression.beta_standardized[j] }}</td>
+              <td>{{ result.regression.beta_unstandardized[j] }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Feature Programs</h2>
+      {% for feature in result.features %}
+      <details class="detail-card">
+        <summary>Feature {{ feature.index }} · {{ feature.instruction_count }} instructions</summary>
+        <ol class="instruction-list">
+          {% for instruction in feature.program %}
+          <li><code>{{ instruction }}</code></li>
+          {% endfor %}
+        </ol>
+      </details>
+      {% endfor %}
+    </section>
+
+    <section class="panel">
+      <h2>Backend Outputs</h2>
+      {% for view in backend_views %}
+      <details class="detail-card" {% if loop.first %}open{% endif %}>
+        <summary>{{ view.backend }}</summary>
+        {% if view.is_markdown_document %}
+        <article class="markdown-document">
+          {{ view.rendered_html | safe }}
+        </article>
+        {% else %}
+        <pre><code>{{ view.text }}</code></pre>
+        {% endif %}
+      </details>
+      {% endfor %}
+    </section>
+    {% endif %}
+  </main>
+</body>
+</html>

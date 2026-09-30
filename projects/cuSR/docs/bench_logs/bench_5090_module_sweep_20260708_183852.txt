@@ -1,0 +1,194 @@
+# RTX 5090 AST-SASS module-size sweep
+Wed Jul  8 18:38:52 UTC 2026
+NVIDIA GeForce RTX 5090, 12.0, 595.71.05
+# variant=tile_static_mse ast_mode=alu-reduce sites_per_kernel=16 total_asts=1024 settings=128 rows=128 iters=1
+
+# asts_per_module=16 modules=64 kernels_per_module=1
+check module 0 max_abs_error=9.53674e-07 worst_idx=0
+check module 1 max_abs_error=1.90735e-06 worst_idx=1287
+check module 2 max_abs_error=3.8147e-06 worst_idx=391
+check module 3 max_abs_error=1.90735e-06 worst_idx=275
+check module 4 max_abs_error=1.90735e-06 worst_idx=1669
+check module 5 max_abs_error=9.53674e-07 worst_idx=137
+check module 6 max_abs_error=1.90735e-06 worst_idx=275
+check module 7 max_abs_error=3.8147e-06 worst_idx=1672
+check module 8 max_abs_error=3.8147e-06 worst_idx=394
+check module 9 max_abs_error=3.8147e-06 worst_idx=286
+check module 10 max_abs_error=3.8147e-06 worst_idx=391
+check module 11 max_abs_error=1.90735e-06 worst_idx=263
+check module 12 max_abs_error=3.8147e-06 worst_idx=1564
+check module 13 max_abs_error=1.90735e-06 worst_idx=1931
+check module 14 max_abs_error=3.8147e-06 worst_idx=1182
+check module 15 max_abs_error=1.90735e-06 worst_idx=403
+check module 16 max_abs_error=3.8147e-06 worst_idx=1680
+check module 17 max_abs_error=1.90735e-06 worst_idx=0
+check module 18 max_abs_error=3.8147e-06 worst_idx=1555
+check module 19 max_abs_error=1.90735e-06 worst_idx=1054
+check module 20 max_abs_error=1.90735e-06 worst_idx=30
+check module 21 max_abs_error=9.53674e-07 worst_idx=780
+check module 22 max_abs_error=9.53674e-07 worst_idx=1425
+check module 23 max_abs_error=1.90735e-06 worst_idx=1415
+check module 24 max_abs_error=1.90735e-06 worst_idx=1310
+check module 25 max_abs_error=3.8147e-06 worst_idx=531
+check module 26 max_abs_error=1.90735e-06 worst_idx=265
+check module 27 max_abs_error=9.53674e-07 worst_idx=391
+check module 28 max_abs_error=3.8147e-06 worst_idx=1288
+check module 29 max_abs_error=1.90735e-06 worst_idx=1429
+check module 30 max_abs_error=3.8147e-06 worst_idx=1303
+check module 31 max_abs_error=1.90735e-06 worst_idx=642
+check module 32 max_abs_error=1.90735e-06 worst_idx=392
+check module 33 max_abs_error=9.53674e-07 worst_idx=520
+check module 34 max_abs_error=9.53674e-07 worst_idx=18
+check module 35 max_abs_error=9.53674e-07 worst_idx=412
+check module 36 max_abs_error=3.8147e-06 worst_idx=1427
+check module 37 max_abs_error=3.8147e-06 worst_idx=1950
+check module 38 max_abs_error=1.90735e-06 worst_idx=277
+check module 39 max_abs_error=3.8147e-06 worst_idx=391
+check module 40 max_abs_error=3.8147e-06 worst_idx=276
+check module 41 max_abs_error=9.53674e-07 worst_idx=158
+check module 42 max_abs_error=9.53674e-07 worst_idx=9
+check module 43 max_abs_error=7.62939e-06 worst_idx=286
+check module 44 max_abs_error=1.90735e-06 worst_idx=1822
+check module 45 max_abs_error=1.90735e-06 worst_idx=147
+check module 46 max_abs_error=1.90735e-06 worst_idx=1544
+check module 47 max_abs_error=3.8147e-06 worst_idx=1288
+check module 48 max_abs_error=9.53674e-07 worst_idx=517
+check module 49 max_abs_error=1.90735e-06 worst_idx=645
+check module 50 max_abs_error=2.86102e-06 worst_idx=896
+check module 51 max_abs_error=9.53674e-07 worst_idx=19
+check module 52 max_abs_error=9.53674e-07 worst_idx=1798
+check module 53 max_abs_error=1.90735e-06 worst_idx=20
+check module 54 max_abs_error=3.8147e-06 worst_idx=670
+check module 55 max_abs_error=3.8147e-06 worst_idx=528
+check module 56 max_abs_error=1.90735e-06 worst_idx=540
+check module 57 max_abs_error=1.90735e-06 worst_idx=770
+check module 58 max_abs_error=1.90735e-06 worst_idx=520
+check module 59 max_abs_error=1.90735e-06 worst_idx=528
+check module 60 max_abs_error=1.90735e-06 worst_idx=390
+check module 61 max_abs_error=1.90735e-06 worst_idx=517
+check module 62 max_abs_error=1.90735e-06 worst_idx=1297
+check module 63 max_abs_error=1.90735e-06 worst_idx=133
+variant=tile_static_mse ast_mode=alu_reduce modules=64 kernels_per_module=1 sites_per_kernel=16 asts=1024 settings=128 run_rows=128 run_iters=1
+nvrtc_seconds=0.187261 cubin_bytes=53568 inspect_sites=16
+patch_seconds=0.001394 asts_per_second=734371.817 patched_sites_per_second=734371.817 us_per_ast=1.362
+patch_registers sites=1024 max_original=48 max_expanded=49 max_patched=51
+module_load_seconds=0.001904 loaded_asts_per_second=537938.877 load_us_per_ast=1.859
+runtime_score_seconds=0.000194 row_evals=16777216 row_evals_per_second=8.626e+10
+runtime_score_reduce_seconds=0.000291 row_evals=16777216 row_evals_per_second=5.775e+10
+
+# asts_per_module=32 modules=32 kernels_per_module=2
+check module 0 max_abs_error=1.90735e-06 worst_idx=3335
+check module 1 max_abs_error=3.8147e-06 worst_idx=391
+check module 2 max_abs_error=1.90735e-06 worst_idx=1669
+check module 3 max_abs_error=3.8147e-06 worst_idx=3720
+check module 4 max_abs_error=3.8147e-06 worst_idx=394
+check module 5 max_abs_error=3.8147e-06 worst_idx=391
+check module 6 max_abs_error=3.8147e-06 worst_idx=1564
+check module 7 max_abs_error=3.8147e-06 worst_idx=1182
+check module 8 max_abs_error=3.8147e-06 worst_idx=1680
+check module 9 max_abs_error=3.8147e-06 worst_idx=1555
+check module 10 max_abs_error=1.90735e-06 worst_idx=30
+check module 11 max_abs_error=1.90735e-06 worst_idx=3463
+check module 12 max_abs_error=3.8147e-06 worst_idx=2579
+check module 13 max_abs_error=1.90735e-06 worst_idx=265
+check module 14 max_abs_error=3.8147e-06 worst_idx=1288
+check module 15 max_abs_error=3.8147e-06 worst_idx=1303
+check module 16 max_abs_error=1.90735e-06 worst_idx=392
+check module 17 max_abs_error=9.53674e-07 worst_idx=18
+check module 18 max_abs_error=3.8147e-06 worst_idx=1427
+check module 19 max_abs_error=3.8147e-06 worst_idx=2439
+check module 20 max_abs_error=3.8147e-06 worst_idx=276
+check module 21 max_abs_error=7.62939e-06 worst_idx=2334
+check module 22 max_abs_error=1.90735e-06 worst_idx=1822
+check module 23 max_abs_error=3.8147e-06 worst_idx=3336
+check module 24 max_abs_error=1.90735e-06 worst_idx=2693
+check module 25 max_abs_error=2.86102e-06 worst_idx=896
+check module 26 max_abs_error=1.90735e-06 worst_idx=2068
+check module 27 max_abs_error=3.8147e-06 worst_idx=670
+check module 28 max_abs_error=1.90735e-06 worst_idx=540
+check module 29 max_abs_error=1.90735e-06 worst_idx=520
+check module 30 max_abs_error=1.90735e-06 worst_idx=390
+check module 31 max_abs_error=1.90735e-06 worst_idx=1297
+variant=tile_static_mse ast_mode=alu_reduce modules=32 kernels_per_module=2 sites_per_kernel=16 asts=1024 settings=128 run_rows=128 run_iters=1
+nvrtc_seconds=0.282660 cubin_bytes=100128 inspect_sites=32
+patch_seconds=0.001390 asts_per_second=736494.069 patched_sites_per_second=736494.069 us_per_ast=1.358
+patch_registers sites=1024 max_original=48 max_expanded=49 max_patched=51
+module_load_seconds=0.001625 loaded_asts_per_second=630140.268 load_us_per_ast=1.587
+runtime_score_seconds=0.000194 row_evals=16777216 row_evals_per_second=8.670e+10
+runtime_score_reduce_seconds=0.000290 row_evals=16777216 row_evals_per_second=5.777e+10
+
+# asts_per_module=64 modules=16 kernels_per_module=4
+check module 0 max_abs_error=3.8147e-06 worst_idx=4487
+check module 1 max_abs_error=3.8147e-06 worst_idx=7816
+check module 2 max_abs_error=3.8147e-06 worst_idx=394
+check module 3 max_abs_error=3.8147e-06 worst_idx=1564
+check module 4 max_abs_error=3.8147e-06 worst_idx=1680
+check module 5 max_abs_error=1.90735e-06 worst_idx=30
+check module 6 max_abs_error=3.8147e-06 worst_idx=2579
+check module 7 max_abs_error=3.8147e-06 worst_idx=1288
+check module 8 max_abs_error=1.90735e-06 worst_idx=392
+check module 9 max_abs_error=3.8147e-06 worst_idx=1427
+check module 10 max_abs_error=7.62939e-06 worst_idx=6430
+check module 11 max_abs_error=3.8147e-06 worst_idx=7432
+check module 12 max_abs_error=2.86102e-06 worst_idx=4992
+check module 13 max_abs_error=3.8147e-06 worst_idx=4766
+check module 14 max_abs_error=1.90735e-06 worst_idx=540
+check module 15 max_abs_error=1.90735e-06 worst_idx=390
+variant=tile_static_mse ast_mode=alu_reduce modules=16 kernels_per_module=4 sites_per_kernel=16 asts=1024 settings=128 run_rows=128 run_iters=1
+nvrtc_seconds=0.546475 cubin_bytes=193504 inspect_sites=64
+patch_seconds=0.001400 asts_per_second=731491.796 patched_sites_per_second=731491.796 us_per_ast=1.367
+patch_registers sites=1024 max_original=48 max_expanded=49 max_patched=51
+module_load_seconds=0.000532 loaded_asts_per_second=1925695.142 load_us_per_ast=0.519
+runtime_score_seconds=0.000193 row_evals=16777216 row_evals_per_second=8.692e+10
+runtime_score_reduce_seconds=0.000289 row_evals=16777216 row_evals_per_second=5.806e+10
+
+# asts_per_module=128 modules=8 kernels_per_module=8
+check module 0 max_abs_error=3.8147e-06 worst_idx=4487
+check module 1 max_abs_error=3.8147e-06 worst_idx=394
+check module 2 max_abs_error=3.8147e-06 worst_idx=1680
+check module 3 max_abs_error=3.8147e-06 worst_idx=2579
+check module 4 max_abs_error=3.8147e-06 worst_idx=9619
+check module 5 max_abs_error=7.62939e-06 worst_idx=6430
+check module 6 max_abs_error=3.8147e-06 worst_idx=12958
+check module 7 max_abs_error=1.90735e-06 worst_idx=540
+variant=tile_static_mse ast_mode=alu_reduce modules=8 kernels_per_module=8 sites_per_kernel=16 asts=1024 settings=128 run_rows=128 run_iters=1
+nvrtc_seconds=1.047439 cubin_bytes=380256 inspect_sites=128
+patch_seconds=0.001404 asts_per_second=729543.726 patched_sites_per_second=729543.726 us_per_ast=1.371
+patch_registers sites=1024 max_original=48 max_expanded=49 max_patched=51
+module_load_seconds=0.000358 loaded_asts_per_second=2860598.990 load_us_per_ast=0.350
+runtime_score_seconds=0.000191 row_evals=16777216 row_evals_per_second=8.791e+10
+runtime_score_reduce_seconds=0.000287 row_evals=16777216 row_evals_per_second=5.839e+10
+
+# asts_per_module=256 modules=4 kernels_per_module=16
+check module 0 max_abs_error=3.8147e-06 worst_idx=4487
+check module 1 max_abs_error=3.8147e-06 worst_idx=1680
+check module 2 max_abs_error=7.62939e-06 worst_idx=22814
+check module 3 max_abs_error=3.8147e-06 worst_idx=12958
+variant=tile_static_mse ast_mode=alu_reduce modules=4 kernels_per_module=16 sites_per_kernel=16 asts=1024 settings=128 run_rows=128 run_iters=1
+nvrtc_seconds=0.045080 cubin_bytes=753504 inspect_sites=256
+patch_seconds=0.001406 asts_per_second=728291.217 patched_sites_per_second=728291.217 us_per_ast=1.373
+patch_registers sites=1024 max_original=48 max_expanded=49 max_patched=51
+module_load_seconds=0.000244 loaded_asts_per_second=4199268.870 load_us_per_ast=0.238
+runtime_score_seconds=0.000190 row_evals=16777216 row_evals_per_second=8.819e+10
+runtime_score_reduce_seconds=0.000285 row_evals=16777216 row_evals_per_second=5.886e+10
+
+# asts_per_module=512 modules=2 kernels_per_module=32
+check module 0 max_abs_error=3.8147e-06 worst_idx=4487
+check module 1 max_abs_error=7.62939e-06 worst_idx=22814
+variant=tile_static_mse ast_mode=alu_reduce modules=2 kernels_per_module=32 sites_per_kernel=16 asts=1024 settings=128 run_rows=128 run_iters=1
+nvrtc_seconds=4.194413 cubin_bytes=1500256 inspect_sites=512
+patch_seconds=0.001423 asts_per_second=719736.972 patched_sites_per_second=719736.972 us_per_ast=1.389
+patch_registers sites=1024 max_original=48 max_expanded=49 max_patched=51
+module_load_seconds=0.000324 loaded_asts_per_second=3164958.217 load_us_per_ast=0.316
+runtime_score_seconds=0.000188 row_evals=16777216 row_evals_per_second=8.915e+10
+runtime_score_reduce_seconds=0.000286 row_evals=16777216 row_evals_per_second=5.863e+10
+
+# asts_per_module=1024 modules=1 kernels_per_module=64
+check module 0 max_abs_error=7.62939e-06 worst_idx=88350
+variant=tile_static_mse ast_mode=alu_reduce modules=1 kernels_per_module=64 sites_per_kernel=16 asts=1024 settings=128 run_rows=128 run_iters=1
+nvrtc_seconds=0.260195 cubin_bytes=2993504 inspect_sites=1024
+patch_seconds=0.001409 asts_per_second=726778.743 patched_sites_per_second=726778.743 us_per_ast=1.376
+patch_registers sites=1024 max_original=48 max_expanded=49 max_patched=51
+module_load_seconds=0.000292 loaded_asts_per_second=3511767.660 load_us_per_ast=0.285
+runtime_score_seconds=0.000191 row_evals=16777216 row_evals_per_second=8.775e+10
+runtime_score_reduce_seconds=0.000287 row_evals=16777216 row_evals_per_second=5.846e+10

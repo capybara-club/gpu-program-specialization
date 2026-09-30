@@ -1,0 +1,39 @@
+/* Public ABI only. Keep in sync with odezza.h. */
+ODEZZA_1 {
+    global:
+        odezza_lm_pipeline_create;
+        odezza_lm_pipeline_create_with_fallback;
+        odezza_lm_pipeline_shape_report;
+        odezza_lm_pipeline_workspace_requirements;
+        odezza_lm_pipeline_run;
+        odezza_lm_pipeline_write_error;
+        odezza_lm_pipeline_destroy;
+        odezza_scoring_pipeline_create;
+        odezza_scoring_pipeline_create_with_template;
+        odezza_scoring_template_create;
+        odezza_scoring_template_write;
+        odezza_scoring_template_read;
+        odezza_scoring_template_nvrtc_seconds;
+        odezza_scoring_template_write_error;
+        odezza_scoring_template_destroy;
+        odezza_scoring_pipeline_destroy;
+        odezza_scoring_pipeline_workspace_requirements;
+        odezza_scoring_pipeline_run;
+        odezza_scoring_pipeline_write_error;
+        odezza_philox4x32;
+        odezza_rng_uniform;
+        odezza_rng_pool_create;
+        odezza_rng_pool_view;
+        odezza_rng_pool_write_error;
+        odezza_rng_pool_destroy;
+        odezza_sampled_parameter_validate;
+        odezza_score_reducer_create;
+        odezza_score_reducer_set_k;
+        odezza_score_reducer_destroy;
+        odezza_score_reducer_write_error;
+        odezza_score_reduction_requirements;
+        odezza_score_decode_index;
+        odezza_score_reducer_run;
+        odezza_score_reducer_gather;
+    local: *;
+};

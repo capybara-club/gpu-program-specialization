@@ -1,0 +1,16 @@
+{
+  "states": 6,
+  "depth": 3,
+  "parameters": 2,
+  "dependencies": [1, 2, 3, 4],
+  "cases_per_level": 3,
+  "duration": 0.5,
+  "samples": 21,
+  "trajectories": 6,
+  "view": "dense",
+  "generation_seconds": 60,
+  "generation_attempts": 2000,
+  "search_seconds": 60,
+  "design_seed": 2026091101,
+  "hosts": ["rack1", "rohini", "ada"]
+}

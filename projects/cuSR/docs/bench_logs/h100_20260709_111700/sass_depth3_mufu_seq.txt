@@ -1,0 +1,7 @@
+variant=tile_static_mse ast_mode=depth3_mufu modules=1 kernels_per_module=8 sites_per_kernel=32 asts=256 settings=1024 run_rows=1048576 run_iters=30
+nvrtc_seconds=4.785501 cubin_bytes=667152 inspect_sites=256
+patch_seconds=0.000399 asts_per_second=642299.432 patched_sites_per_second=642299.432 us_per_ast=1.557
+patch_registers sites=256 max_original=96 max_expanded=100 max_patched=102
+module_load_seconds=0.000202 loaded_asts_per_second=1265184.687 load_us_per_ast=0.790
+runtime_score_seconds=18.392391 row_evals=8246337208320 row_evals_per_second=4.484e+11
+runtime_score_reduce_seconds=18.454619 row_evals=8246337208320 row_evals_per_second=4.468e+11

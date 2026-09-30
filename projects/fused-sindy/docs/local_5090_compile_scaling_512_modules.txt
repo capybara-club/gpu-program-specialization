@@ -1,0 +1,12 @@
+RUN workers=1
+implicit_sindy_ast_compile_api modules=512 kernels=4 workers=1 sm_120 create_ms=1248.767 compile_ms=23758.462 modules_per_sec=21.550 gram_kernels_per_sec=86.201 asts_per_sec=2758.428
+RUN workers=2
+implicit_sindy_ast_compile_api modules=512 kernels=4 workers=2 sm_120 create_ms=1191.741 compile_ms=12450.930 modules_per_sec=41.121 gram_kernels_per_sec=164.486 asts_per_sec=5263.543
+RUN workers=4
+implicit_sindy_ast_compile_api modules=512 kernels=4 workers=4 sm_120 create_ms=1205.458 compile_ms=6262.121 modules_per_sec=81.761 gram_kernels_per_sec=327.046 asts_per_sec=10465.464
+RUN workers=8
+implicit_sindy_ast_compile_api modules=512 kernels=4 workers=8 sm_120 create_ms=1202.691 compile_ms=3262.994 modules_per_sec=156.911 gram_kernels_per_sec=627.644 asts_per_sec=20084.623
+RUN workers=12
+implicit_sindy_ast_compile_api modules=512 kernels=4 workers=12 sm_120 create_ms=1197.641 compile_ms=2275.620 modules_per_sec=224.994 gram_kernels_per_sec=899.975 asts_per_sec=28799.190
+RUN workers=24
+implicit_sindy_ast_compile_api modules=512 kernels=4 workers=24 sm_120 create_ms=1226.659 compile_ms=1897.167 modules_per_sec=269.876 gram_kernels_per_sec=1079.505 asts_per_sec=34544.147

@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "states": ["x0", "x1"],
+  "integration": {"method": "rosenbrock", "dt": 0.001, "stiff": true},
+  "constants": {"rate": {"values": [100.0, 1000.0]}},
+  "rhs": {"x0": "-const.rate*x0+x1", "x1": "x0-x1"},
+  "limits": {"max_skeletons": 10, "max_variants": 10, "max_configurations": 100}
+}

@@ -1,0 +1,7620 @@
+{
+  "version": 1,
+  "states": [
+    "x",
+    "y",
+    "z"
+  ],
+  "integration": {
+    "method": "rk4",
+    "dt": 0.125
+  },
+  "rules": {
+    "ArgumentASimple": [
+      "rng.freqA*(1)",
+      "rng.freqA*(leaf.A_0)",
+      "rng.freqA*(z)",
+      "rng.freqA*((x*leaf.A_1))",
+      "rng.freqA*((x*z))",
+      "rng.freqA*((y*leaf.A_2))",
+      "rng.freqA*((z*z))"
+    ],
+    "ArgumentACompound": [
+      "(rng.freqA*(1)+rng.mixA*(leaf.A_3))",
+      "(rng.freqA*(1)+rng.mixA*(z))",
+      "(rng.freqA*(1)+rng.mixA*((x*leaf.A_4)))",
+      "(rng.freqA*(1)+rng.mixA*((x*z)))",
+      "(rng.freqA*(1)+rng.mixA*((y*leaf.A_5)))",
+      "(rng.freqA*(1)+rng.mixA*((z*z)))",
+      "(rng.freqA*(x)+rng.mixA*(leaf.A_6))",
+      "(rng.freqA*(x)+rng.mixA*((x*leaf.A_7)))",
+      "(rng.freqA*(x)+rng.mixA*((x*z)))",
+      "(rng.freqA*(x)+rng.mixA*((y*leaf.A_8)))",
+      "(rng.freqA*(x)+rng.mixA*((z*z)))",
+      "(rng.freqA*(y)+rng.mixA*(z))",
+      "(rng.freqA*(y)+rng.mixA*((x*leaf.A_9)))",
+      "(rng.freqA*(y)+rng.mixA*((x*z)))",
+      "(rng.freqA*(y)+rng.mixA*((y*leaf.A_10)))",
+      "(rng.freqA*(y)+rng.mixA*((z*z)))",
+      "(rng.freqA*(z)+rng.mixA*((x*leaf.A_11)))",
+      "(rng.freqA*(z)+rng.mixA*((x*z)))",
+      "(rng.freqA*(z)+rng.mixA*((y*leaf.A_12)))",
+      "(rng.freqA*(z)+rng.mixA*((z*z)))",
+      "(rng.freqA*(x*x)+rng.mixA*((x*leaf.A_13)))",
+      "(rng.freqA*(x*x)+rng.mixA*((y*leaf.A_14)))",
+      "(rng.freqA*(x*x)+rng.mixA*((z*z)))",
+      "(rng.freqA*(x*y)+rng.mixA*((x*z)))",
+      "(rng.freqA*(x*y)+rng.mixA*((y*leaf.A_15)))",
+      "(rng.freqA*(x*y)+rng.mixA*((z*z)))",
+      "(rng.freqA*(x*z)+rng.mixA*((y*leaf.A_16)))",
+      "(rng.freqA*(x*z)+rng.mixA*((z*z)))",
+      "(rng.freqA*(y*y)+rng.mixA*((y*z)))",
+      "(rng.freqA*(y*y)+rng.mixA*((z*z)))",
+      "(rng.freqA*(y*z)+rng.mixA*((z*z)))"
+    ],
+    "ArgumentBSimple": [
+      "rng.freqB*(1)",
+      "rng.freqB*(leaf.B_17)",
+      "rng.freqB*(z)",
+      "rng.freqB*((x*leaf.B_18))",
+      "rng.freqB*((x*z))",
+      "rng.freqB*((y*leaf.B_19))",
+      "rng.freqB*((z*z))"
+    ],
+    "ArgumentBCompound": [
+      "(rng.freqB*(1)+rng.mixB*(leaf.B_20))",
+      "(rng.freqB*(1)+rng.mixB*(z))",
+      "(rng.freqB*(1)+rng.mixB*((x*leaf.B_21)))",
+      "(rng.freqB*(1)+rng.mixB*((x*z)))",
+      "(rng.freqB*(1)+rng.mixB*((y*leaf.B_22)))",
+      "(rng.freqB*(1)+rng.mixB*((z*z)))",
+      "(rng.freqB*(x)+rng.mixB*(leaf.B_23))",
+      "(rng.freqB*(x)+rng.mixB*((x*leaf.B_24)))",
+      "(rng.freqB*(x)+rng.mixB*((x*z)))",
+      "(rng.freqB*(x)+rng.mixB*((y*leaf.B_25)))",
+      "(rng.freqB*(x)+rng.mixB*((z*z)))",
+      "(rng.freqB*(y)+rng.mixB*(z))",
+      "(rng.freqB*(y)+rng.mixB*((x*leaf.B_26)))",
+      "(rng.freqB*(y)+rng.mixB*((x*z)))",
+      "(rng.freqB*(y)+rng.mixB*((y*leaf.B_27)))",
+      "(rng.freqB*(y)+rng.mixB*((z*z)))",
+      "(rng.freqB*(z)+rng.mixB*((x*leaf.B_28)))",
+      "(rng.freqB*(z)+rng.mixB*((x*z)))",
+      "(rng.freqB*(z)+rng.mixB*((y*leaf.B_29)))",
+      "(rng.freqB*(z)+rng.mixB*((z*z)))",
+      "(rng.freqB*(x*x)+rng.mixB*((x*leaf.B_30)))",
+      "(rng.freqB*(x*x)+rng.mixB*((y*leaf.B_31)))",
+      "(rng.freqB*(x*x)+rng.mixB*((z*z)))",
+      "(rng.freqB*(x*y)+rng.mixB*((x*z)))",
+      "(rng.freqB*(x*y)+rng.mixB*((y*leaf.B_32)))",
+      "(rng.freqB*(x*y)+rng.mixB*((z*z)))",
+      "(rng.freqB*(x*z)+rng.mixB*((y*leaf.B_33)))",
+      "(rng.freqB*(x*z)+rng.mixB*((z*z)))",
+      "(rng.freqB*(y*y)+rng.mixB*((y*z)))",
+      "(rng.freqB*(y*y)+rng.mixB*((z*z)))",
+      "(rng.freqB*(y*z)+rng.mixB*((z*z)))"
+    ],
+    "Quadratic": [
+      "(x*leaf.Q_34)",
+      "(x*z)",
+      "(y*leaf.Q_35)",
+      "(z*z)"
+    ]
+  },
+  "leaves": {
+    "A_0": {
+      "states": [
+        "x",
+        "y"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "x",
+          "y"
+        ]
+      ]
+    },
+    "A_1": {
+      "states": [
+        "x",
+        "y"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "x",
+          "y"
+        ]
+      ]
+    },
+    "A_2": {
+      "states": [
+        "y",
+        "z"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "y",
+          "z"
+        ]
+      ]
+    },
+    "A_3": {
+      "states": [
+        "x",
+        "y"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "x",
+          "y"
+        ]
+      ]
+    },
+    "A_4": {
+      "states": [
+        "x",
+        "y"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "x",
+          "y"
+        ]
+      ]
+    },
+    "A_5": {
+      "states": [
+        "y",
+        "z"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "y",
+          "z"
+        ]
+      ]
+    },
+    "A_6": {
+      "states": [
+        "y",
+        "z"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "y",
+          "z"
+        ]
+      ]
+    },
+    "A_7": {
+      "states": [
+        "x",
+        "y"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "x",
+          "y"
+        ]
+      ]
+    },
+    "A_8": {
+      "states": [
+        "y",
+        "z"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "y",
+          "z"
+        ]
+      ]
+    },
+    "A_9": {
+      "states": [
+        "x",
+        "y"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "x",
+          "y"
+        ]
+      ]
+    },
+    "A_10": {
+      "states": [
+        "y",
+        "z"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "y",
+          "z"
+        ]
+      ]
+    },
+    "A_11": {
+      "states": [
+        "x",
+        "y"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "x",
+          "y"
+        ]
+      ]
+    },
+    "A_12": {
+      "states": [
+        "y",
+        "z"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "y",
+          "z"
+        ]
+      ]
+    },
+    "A_13": {
+      "states": [
+        "y",
+        "z"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "y",
+          "z"
+        ]
+      ]
+    },
+    "A_14": {
+      "states": [
+        "y",
+        "z"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "y",
+          "z"
+        ]
+      ]
+    },
+    "A_15": {
+      "states": [
+        "y",
+        "z"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "y",
+          "z"
+        ]
+      ]
+    },
+    "A_16": {
+      "states": [
+        "y",
+        "z"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "y",
+          "z"
+        ]
+      ]
+    },
+    "B_17": {
+      "states": [
+        "x",
+        "y"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "x",
+          "y"
+        ]
+      ]
+    },
+    "B_18": {
+      "states": [
+        "x",
+        "y"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "x",
+          "y"
+        ]
+      ]
+    },
+    "B_19": {
+      "states": [
+        "y",
+        "z"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "y",
+          "z"
+        ]
+      ]
+    },
+    "B_20": {
+      "states": [
+        "x",
+        "y"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "x",
+          "y"
+        ]
+      ]
+    },
+    "B_21": {
+      "states": [
+        "x",
+        "y"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "x",
+          "y"
+        ]
+      ]
+    },
+    "B_22": {
+      "states": [
+        "y",
+        "z"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "y",
+          "z"
+        ]
+      ]
+    },
+    "B_23": {
+      "states": [
+        "y",
+        "z"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "y",
+          "z"
+        ]
+      ]
+    },
+    "B_24": {
+      "states": [
+        "x",
+        "y"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "x",
+          "y"
+        ]
+      ]
+    },
+    "B_25": {
+      "states": [
+        "y",
+        "z"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "y",
+          "z"
+        ]
+      ]
+    },
+    "B_26": {
+      "states": [
+        "x",
+        "y"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "x",
+          "y"
+        ]
+      ]
+    },
+    "B_27": {
+      "states": [
+        "y",
+        "z"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "y",
+          "z"
+        ]
+      ]
+    },
+    "B_28": {
+      "states": [
+        "x",
+        "y"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "x",
+          "y"
+        ]
+      ]
+    },
+    "B_29": {
+      "states": [
+        "y",
+        "z"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "y",
+          "z"
+        ]
+      ]
+    },
+    "B_30": {
+      "states": [
+        "y",
+        "z"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "y",
+          "z"
+        ]
+      ]
+    },
+    "B_31": {
+      "states": [
+        "y",
+        "z"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "y",
+          "z"
+        ]
+      ]
+    },
+    "B_32": {
+      "states": [
+        "y",
+        "z"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "y",
+          "z"
+        ]
+      ]
+    },
+    "B_33": {
+      "states": [
+        "y",
+        "z"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "y",
+          "z"
+        ]
+      ]
+    },
+    "Q_34": {
+      "states": [
+        "x",
+        "y"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "x",
+          "y"
+        ]
+      ]
+    },
+    "Q_35": {
+      "states": [
+        "y",
+        "z"
+      ],
+      "arity": 2,
+      "coverage": "explicit",
+      "groups": [
+        [
+          "y",
+          "z"
+        ]
+      ]
+    }
+  },
+  "rng_banks": {
+    "bank_baseline": {
+      "base": "uniform01",
+      "count": 8192,
+      "seed": 2026091401,
+      "scope": "run"
+    },
+    "bank_simple": {
+      "base": "uniform01",
+      "count": 8192,
+      "seed": 2026091401,
+      "scope": "run"
+    },
+    "bank_compound": {
+      "base": "uniform01",
+      "count": 4096,
+      "seed": 2026091401,
+      "scope": "run"
+    },
+    "bank_mixed": {
+      "base": "uniform01",
+      "count": 4096,
+      "seed": 2026091401,
+      "scope": "run"
+    },
+    "bank_double_compound": {
+      "base": "uniform01",
+      "count": 2048,
+      "seed": 2026091401,
+      "scope": "run"
+    }
+  },
+  "families": [
+    {
+      "id": "baseline__linear",
+      "tags": [
+        "mechanism:baseline",
+        "background:linear",
+        "argument_class:baseline"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_baseline",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_baseline",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_baseline",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_baseline",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_baseline",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_baseline",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_baseline",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_baseline",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_baseline",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_baseline",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 2,
+        "max_variants": 2,
+        "max_configurations": 16384,
+        "max_derivations": 100,
+        "max_expansion_steps": 10000
+      }
+    },
+    {
+      "id": "sin__linear__simple",
+      "tags": [
+        "mechanism:sin",
+        "background:linear",
+        "argument_class:simple"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*sin(ArgumentASimple)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 11,
+        "max_variants": 11,
+        "max_configurations": 90112,
+        "max_derivations": 220,
+        "max_expansion_steps": 11000
+      }
+    },
+    {
+      "id": "cos__linear__simple",
+      "tags": [
+        "mechanism:cos",
+        "background:linear",
+        "argument_class:simple"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*cos(ArgumentASimple)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 11,
+        "max_variants": 11,
+        "max_configurations": 90112,
+        "max_derivations": 220,
+        "max_expansion_steps": 11000
+      }
+    },
+    {
+      "id": "sin__linear__compound",
+      "tags": [
+        "mechanism:sin",
+        "background:linear",
+        "argument_class:compound"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*sin(ArgumentACompound)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 46,
+        "max_variants": 46,
+        "max_configurations": 188416,
+        "max_derivations": 920,
+        "max_expansion_steps": 46000
+      }
+    },
+    {
+      "id": "cos__linear__compound",
+      "tags": [
+        "mechanism:cos",
+        "background:linear",
+        "argument_class:compound"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*cos(ArgumentACompound)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 46,
+        "max_variants": 46,
+        "max_configurations": 188416,
+        "max_derivations": 920,
+        "max_expansion_steps": 46000
+      }
+    },
+    {
+      "id": "sin_times_sin__linear__simple_simple",
+      "tags": [
+        "mechanism:sin_times_sin",
+        "background:linear",
+        "argument_class:simple"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*sin(ArgumentASimple)*sin(ArgumentBSimple)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 101,
+        "max_variants": 101,
+        "max_configurations": 827392,
+        "max_derivations": 2020,
+        "max_expansion_steps": 101000
+      }
+    },
+    {
+      "id": "sin_plus_sin__linear__simple_simple",
+      "tags": [
+        "mechanism:sin_plus_sin",
+        "background:linear",
+        "argument_class:simple"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*sin(ArgumentASimple)+rng.amplitudeB*sin(ArgumentBSimple)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 101,
+        "max_variants": 101,
+        "max_configurations": 827392,
+        "max_derivations": 2020,
+        "max_expansion_steps": 101000
+      }
+    },
+    {
+      "id": "sin_times_cos__linear__simple_simple",
+      "tags": [
+        "mechanism:sin_times_cos",
+        "background:linear",
+        "argument_class:simple"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*sin(ArgumentASimple)*cos(ArgumentBSimple)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 101,
+        "max_variants": 101,
+        "max_configurations": 827392,
+        "max_derivations": 2020,
+        "max_expansion_steps": 101000
+      }
+    },
+    {
+      "id": "sin_plus_cos__linear__simple_simple",
+      "tags": [
+        "mechanism:sin_plus_cos",
+        "background:linear",
+        "argument_class:simple"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*sin(ArgumentASimple)+rng.amplitudeB*cos(ArgumentBSimple)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 101,
+        "max_variants": 101,
+        "max_configurations": 827392,
+        "max_derivations": 2020,
+        "max_expansion_steps": 101000
+      }
+    },
+    {
+      "id": "cos_times_cos__linear__simple_simple",
+      "tags": [
+        "mechanism:cos_times_cos",
+        "background:linear",
+        "argument_class:simple"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*cos(ArgumentASimple)*cos(ArgumentBSimple)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 101,
+        "max_variants": 101,
+        "max_configurations": 827392,
+        "max_derivations": 2020,
+        "max_expansion_steps": 101000
+      }
+    },
+    {
+      "id": "cos_plus_cos__linear__simple_simple",
+      "tags": [
+        "mechanism:cos_plus_cos",
+        "background:linear",
+        "argument_class:simple"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*cos(ArgumentASimple)+rng.amplitudeB*cos(ArgumentBSimple)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 101,
+        "max_variants": 101,
+        "max_configurations": 827392,
+        "max_derivations": 2020,
+        "max_expansion_steps": 101000
+      }
+    },
+    {
+      "id": "sin_times_sin__linear__simple_compound",
+      "tags": [
+        "mechanism:sin_times_sin",
+        "background:linear",
+        "argument_class:mixed"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*sin(ArgumentASimple)*sin(ArgumentBCompound)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 451,
+        "max_variants": 451,
+        "max_configurations": 1847296,
+        "max_derivations": 9020,
+        "max_expansion_steps": 451000
+      }
+    },
+    {
+      "id": "sin_plus_sin__linear__simple_compound",
+      "tags": [
+        "mechanism:sin_plus_sin",
+        "background:linear",
+        "argument_class:mixed"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*sin(ArgumentASimple)+rng.amplitudeB*sin(ArgumentBCompound)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 451,
+        "max_variants": 451,
+        "max_configurations": 1847296,
+        "max_derivations": 9020,
+        "max_expansion_steps": 451000
+      }
+    },
+    {
+      "id": "sin_times_cos__linear__simple_compound",
+      "tags": [
+        "mechanism:sin_times_cos",
+        "background:linear",
+        "argument_class:mixed"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*sin(ArgumentASimple)*cos(ArgumentBCompound)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 451,
+        "max_variants": 451,
+        "max_configurations": 1847296,
+        "max_derivations": 9020,
+        "max_expansion_steps": 451000
+      }
+    },
+    {
+      "id": "sin_plus_cos__linear__simple_compound",
+      "tags": [
+        "mechanism:sin_plus_cos",
+        "background:linear",
+        "argument_class:mixed"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*sin(ArgumentASimple)+rng.amplitudeB*cos(ArgumentBCompound)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 451,
+        "max_variants": 451,
+        "max_configurations": 1847296,
+        "max_derivations": 9020,
+        "max_expansion_steps": 451000
+      }
+    },
+    {
+      "id": "cos_times_cos__linear__simple_compound",
+      "tags": [
+        "mechanism:cos_times_cos",
+        "background:linear",
+        "argument_class:mixed"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*cos(ArgumentASimple)*cos(ArgumentBCompound)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 451,
+        "max_variants": 451,
+        "max_configurations": 1847296,
+        "max_derivations": 9020,
+        "max_expansion_steps": 451000
+      }
+    },
+    {
+      "id": "cos_plus_cos__linear__simple_compound",
+      "tags": [
+        "mechanism:cos_plus_cos",
+        "background:linear",
+        "argument_class:mixed"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*cos(ArgumentASimple)+rng.amplitudeB*cos(ArgumentBCompound)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 451,
+        "max_variants": 451,
+        "max_configurations": 1847296,
+        "max_derivations": 9020,
+        "max_expansion_steps": 451000
+      }
+    },
+    {
+      "id": "sin_times_sin__linear__compound_simple",
+      "tags": [
+        "mechanism:sin_times_sin",
+        "background:linear",
+        "argument_class:mixed"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*sin(ArgumentACompound)*sin(ArgumentBSimple)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 451,
+        "max_variants": 451,
+        "max_configurations": 1847296,
+        "max_derivations": 9020,
+        "max_expansion_steps": 451000
+      }
+    },
+    {
+      "id": "sin_plus_sin__linear__compound_simple",
+      "tags": [
+        "mechanism:sin_plus_sin",
+        "background:linear",
+        "argument_class:mixed"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*sin(ArgumentACompound)+rng.amplitudeB*sin(ArgumentBSimple)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 451,
+        "max_variants": 451,
+        "max_configurations": 1847296,
+        "max_derivations": 9020,
+        "max_expansion_steps": 451000
+      }
+    },
+    {
+      "id": "sin_times_cos__linear__compound_simple",
+      "tags": [
+        "mechanism:sin_times_cos",
+        "background:linear",
+        "argument_class:mixed"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*sin(ArgumentACompound)*cos(ArgumentBSimple)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 451,
+        "max_variants": 451,
+        "max_configurations": 1847296,
+        "max_derivations": 9020,
+        "max_expansion_steps": 451000
+      }
+    },
+    {
+      "id": "sin_plus_cos__linear__compound_simple",
+      "tags": [
+        "mechanism:sin_plus_cos",
+        "background:linear",
+        "argument_class:mixed"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*sin(ArgumentACompound)+rng.amplitudeB*cos(ArgumentBSimple)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 451,
+        "max_variants": 451,
+        "max_configurations": 1847296,
+        "max_derivations": 9020,
+        "max_expansion_steps": 451000
+      }
+    },
+    {
+      "id": "cos_times_cos__linear__compound_simple",
+      "tags": [
+        "mechanism:cos_times_cos",
+        "background:linear",
+        "argument_class:mixed"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*cos(ArgumentACompound)*cos(ArgumentBSimple)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 451,
+        "max_variants": 451,
+        "max_configurations": 1847296,
+        "max_derivations": 9020,
+        "max_expansion_steps": 451000
+      }
+    },
+    {
+      "id": "cos_plus_cos__linear__compound_simple",
+      "tags": [
+        "mechanism:cos_plus_cos",
+        "background:linear",
+        "argument_class:mixed"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*cos(ArgumentACompound)+rng.amplitudeB*cos(ArgumentBSimple)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 451,
+        "max_variants": 451,
+        "max_configurations": 1847296,
+        "max_derivations": 9020,
+        "max_expansion_steps": 451000
+      }
+    },
+    {
+      "id": "sin_times_sin__linear__compound_compound",
+      "tags": [
+        "mechanism:sin_times_sin",
+        "background:linear",
+        "argument_class:double_compound"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*sin(ArgumentACompound)*sin(ArgumentBCompound)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 2026,
+        "max_variants": 2026,
+        "max_configurations": 4149248,
+        "max_derivations": 40520,
+        "max_expansion_steps": 2026000
+      }
+    },
+    {
+      "id": "sin_plus_sin__linear__compound_compound",
+      "tags": [
+        "mechanism:sin_plus_sin",
+        "background:linear",
+        "argument_class:double_compound"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*sin(ArgumentACompound)+rng.amplitudeB*sin(ArgumentBCompound)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 2026,
+        "max_variants": 2026,
+        "max_configurations": 4149248,
+        "max_derivations": 40520,
+        "max_expansion_steps": 2026000
+      }
+    },
+    {
+      "id": "sin_times_cos__linear__compound_compound",
+      "tags": [
+        "mechanism:sin_times_cos",
+        "background:linear",
+        "argument_class:double_compound"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*sin(ArgumentACompound)*cos(ArgumentBCompound)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 2026,
+        "max_variants": 2026,
+        "max_configurations": 4149248,
+        "max_derivations": 40520,
+        "max_expansion_steps": 2026000
+      }
+    },
+    {
+      "id": "sin_plus_cos__linear__compound_compound",
+      "tags": [
+        "mechanism:sin_plus_cos",
+        "background:linear",
+        "argument_class:double_compound"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*sin(ArgumentACompound)+rng.amplitudeB*cos(ArgumentBCompound)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 2026,
+        "max_variants": 2026,
+        "max_configurations": 4149248,
+        "max_derivations": 40520,
+        "max_expansion_steps": 2026000
+      }
+    },
+    {
+      "id": "cos_times_cos__linear__compound_compound",
+      "tags": [
+        "mechanism:cos_times_cos",
+        "background:linear",
+        "argument_class:double_compound"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*cos(ArgumentACompound)*cos(ArgumentBCompound)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 2026,
+        "max_variants": 2026,
+        "max_configurations": 4149248,
+        "max_derivations": 40520,
+        "max_expansion_steps": 2026000
+      }
+    },
+    {
+      "id": "cos_plus_cos__linear__compound_compound",
+      "tags": [
+        "mechanism:cos_plus_cos",
+        "background:linear",
+        "argument_class:double_compound"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.amplitude*cos(ArgumentACompound)+rng.amplitudeB*cos(ArgumentBCompound)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 2026,
+        "max_variants": 2026,
+        "max_configurations": 4149248,
+        "max_derivations": 40520,
+        "max_expansion_steps": 2026000
+      }
+    },
+    {
+      "id": "baseline__linear_quadratic",
+      "tags": [
+        "mechanism:baseline",
+        "background:linear_quadratic",
+        "argument_class:baseline"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Quadratic"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_baseline",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_baseline",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_baseline",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_baseline",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_baseline",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_baseline",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_baseline",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_baseline",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_baseline",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_baseline",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 7,
+        "max_variants": 7,
+        "max_configurations": 57344,
+        "max_derivations": 140,
+        "max_expansion_steps": 10000
+      }
+    },
+    {
+      "id": "sin__linear_quadratic__simple",
+      "tags": [
+        "mechanism:sin",
+        "background:linear_quadratic",
+        "argument_class:simple"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Quadratic+rng.amplitude*sin(ArgumentASimple)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 61,
+        "max_variants": 61,
+        "max_configurations": 499712,
+        "max_derivations": 1220,
+        "max_expansion_steps": 61000
+      }
+    },
+    {
+      "id": "cos__linear_quadratic__simple",
+      "tags": [
+        "mechanism:cos",
+        "background:linear_quadratic",
+        "argument_class:simple"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Quadratic+rng.amplitude*cos(ArgumentASimple)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 61,
+        "max_variants": 61,
+        "max_configurations": 499712,
+        "max_derivations": 1220,
+        "max_expansion_steps": 61000
+      }
+    },
+    {
+      "id": "sin__linear_quadratic__compound",
+      "tags": [
+        "mechanism:sin",
+        "background:linear_quadratic",
+        "argument_class:compound"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Quadratic+rng.amplitude*sin(ArgumentACompound)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 271,
+        "max_variants": 271,
+        "max_configurations": 1110016,
+        "max_derivations": 5420,
+        "max_expansion_steps": 271000
+      }
+    },
+    {
+      "id": "cos__linear_quadratic__compound",
+      "tags": [
+        "mechanism:cos",
+        "background:linear_quadratic",
+        "argument_class:compound"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Quadratic+rng.amplitude*cos(ArgumentACompound)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_compound",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 271,
+        "max_variants": 271,
+        "max_configurations": 1110016,
+        "max_derivations": 5420,
+        "max_expansion_steps": 271000
+      }
+    },
+    {
+      "id": "sin_times_sin__linear_quadratic__simple_simple",
+      "tags": [
+        "mechanism:sin_times_sin",
+        "background:linear_quadratic",
+        "argument_class:simple"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Quadratic+rng.amplitude*sin(ArgumentASimple)*sin(ArgumentBSimple)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 601,
+        "max_variants": 601,
+        "max_configurations": 4923392,
+        "max_derivations": 12020,
+        "max_expansion_steps": 601000
+      }
+    },
+    {
+      "id": "sin_plus_sin__linear_quadratic__simple_simple",
+      "tags": [
+        "mechanism:sin_plus_sin",
+        "background:linear_quadratic",
+        "argument_class:simple"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Quadratic+rng.amplitude*sin(ArgumentASimple)+rng.amplitudeB*sin(ArgumentBSimple)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 601,
+        "max_variants": 601,
+        "max_configurations": 4923392,
+        "max_derivations": 12020,
+        "max_expansion_steps": 601000
+      }
+    },
+    {
+      "id": "sin_times_cos__linear_quadratic__simple_simple",
+      "tags": [
+        "mechanism:sin_times_cos",
+        "background:linear_quadratic",
+        "argument_class:simple"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Quadratic+rng.amplitude*sin(ArgumentASimple)*cos(ArgumentBSimple)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 601,
+        "max_variants": 601,
+        "max_configurations": 4923392,
+        "max_derivations": 12020,
+        "max_expansion_steps": 601000
+      }
+    },
+    {
+      "id": "sin_plus_cos__linear_quadratic__simple_simple",
+      "tags": [
+        "mechanism:sin_plus_cos",
+        "background:linear_quadratic",
+        "argument_class:simple"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Quadratic+rng.amplitude*sin(ArgumentASimple)+rng.amplitudeB*cos(ArgumentBSimple)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 601,
+        "max_variants": 601,
+        "max_configurations": 4923392,
+        "max_derivations": 12020,
+        "max_expansion_steps": 601000
+      }
+    },
+    {
+      "id": "cos_times_cos__linear_quadratic__simple_simple",
+      "tags": [
+        "mechanism:cos_times_cos",
+        "background:linear_quadratic",
+        "argument_class:simple"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Quadratic+rng.amplitude*cos(ArgumentASimple)*cos(ArgumentBSimple)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 601,
+        "max_variants": 601,
+        "max_configurations": 4923392,
+        "max_derivations": 12020,
+        "max_expansion_steps": 601000
+      }
+    },
+    {
+      "id": "cos_plus_cos__linear_quadratic__simple_simple",
+      "tags": [
+        "mechanism:cos_plus_cos",
+        "background:linear_quadratic",
+        "argument_class:simple"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Quadratic+rng.amplitude*cos(ArgumentASimple)+rng.amplitudeB*cos(ArgumentBSimple)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_simple",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 601,
+        "max_variants": 601,
+        "max_configurations": 4923392,
+        "max_derivations": 12020,
+        "max_expansion_steps": 601000
+      }
+    },
+    {
+      "id": "sin_times_sin__linear_quadratic__simple_compound",
+      "tags": [
+        "mechanism:sin_times_sin",
+        "background:linear_quadratic",
+        "argument_class:mixed"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Quadratic+rng.amplitude*sin(ArgumentASimple)*sin(ArgumentBCompound)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 2701,
+        "max_variants": 2701,
+        "max_configurations": 11063296,
+        "max_derivations": 54020,
+        "max_expansion_steps": 2701000
+      }
+    },
+    {
+      "id": "sin_plus_sin__linear_quadratic__simple_compound",
+      "tags": [
+        "mechanism:sin_plus_sin",
+        "background:linear_quadratic",
+        "argument_class:mixed"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Quadratic+rng.amplitude*sin(ArgumentASimple)+rng.amplitudeB*sin(ArgumentBCompound)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 2701,
+        "max_variants": 2701,
+        "max_configurations": 11063296,
+        "max_derivations": 54020,
+        "max_expansion_steps": 2701000
+      }
+    },
+    {
+      "id": "sin_times_cos__linear_quadratic__simple_compound",
+      "tags": [
+        "mechanism:sin_times_cos",
+        "background:linear_quadratic",
+        "argument_class:mixed"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Quadratic+rng.amplitude*sin(ArgumentASimple)*cos(ArgumentBCompound)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 2701,
+        "max_variants": 2701,
+        "max_configurations": 11063296,
+        "max_derivations": 54020,
+        "max_expansion_steps": 2701000
+      }
+    },
+    {
+      "id": "sin_plus_cos__linear_quadratic__simple_compound",
+      "tags": [
+        "mechanism:sin_plus_cos",
+        "background:linear_quadratic",
+        "argument_class:mixed"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Quadratic+rng.amplitude*sin(ArgumentASimple)+rng.amplitudeB*cos(ArgumentBCompound)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 2701,
+        "max_variants": 2701,
+        "max_configurations": 11063296,
+        "max_derivations": 54020,
+        "max_expansion_steps": 2701000
+      }
+    },
+    {
+      "id": "cos_times_cos__linear_quadratic__simple_compound",
+      "tags": [
+        "mechanism:cos_times_cos",
+        "background:linear_quadratic",
+        "argument_class:mixed"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Quadratic+rng.amplitude*cos(ArgumentASimple)*cos(ArgumentBCompound)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 2701,
+        "max_variants": 2701,
+        "max_configurations": 11063296,
+        "max_derivations": 54020,
+        "max_expansion_steps": 2701000
+      }
+    },
+    {
+      "id": "cos_plus_cos__linear_quadratic__simple_compound",
+      "tags": [
+        "mechanism:cos_plus_cos",
+        "background:linear_quadratic",
+        "argument_class:mixed"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Quadratic+rng.amplitude*cos(ArgumentASimple)+rng.amplitudeB*cos(ArgumentBCompound)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 2701,
+        "max_variants": 2701,
+        "max_configurations": 11063296,
+        "max_derivations": 54020,
+        "max_expansion_steps": 2701000
+      }
+    },
+    {
+      "id": "sin_times_sin__linear_quadratic__compound_simple",
+      "tags": [
+        "mechanism:sin_times_sin",
+        "background:linear_quadratic",
+        "argument_class:mixed"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Quadratic+rng.amplitude*sin(ArgumentACompound)*sin(ArgumentBSimple)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 2701,
+        "max_variants": 2701,
+        "max_configurations": 11063296,
+        "max_derivations": 54020,
+        "max_expansion_steps": 2701000
+      }
+    },
+    {
+      "id": "sin_plus_sin__linear_quadratic__compound_simple",
+      "tags": [
+        "mechanism:sin_plus_sin",
+        "background:linear_quadratic",
+        "argument_class:mixed"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Quadratic+rng.amplitude*sin(ArgumentACompound)+rng.amplitudeB*sin(ArgumentBSimple)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 2701,
+        "max_variants": 2701,
+        "max_configurations": 11063296,
+        "max_derivations": 54020,
+        "max_expansion_steps": 2701000
+      }
+    },
+    {
+      "id": "sin_times_cos__linear_quadratic__compound_simple",
+      "tags": [
+        "mechanism:sin_times_cos",
+        "background:linear_quadratic",
+        "argument_class:mixed"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Quadratic+rng.amplitude*sin(ArgumentACompound)*cos(ArgumentBSimple)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 2701,
+        "max_variants": 2701,
+        "max_configurations": 11063296,
+        "max_derivations": 54020,
+        "max_expansion_steps": 2701000
+      }
+    },
+    {
+      "id": "sin_plus_cos__linear_quadratic__compound_simple",
+      "tags": [
+        "mechanism:sin_plus_cos",
+        "background:linear_quadratic",
+        "argument_class:mixed"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Quadratic+rng.amplitude*sin(ArgumentACompound)+rng.amplitudeB*cos(ArgumentBSimple)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 2701,
+        "max_variants": 2701,
+        "max_configurations": 11063296,
+        "max_derivations": 54020,
+        "max_expansion_steps": 2701000
+      }
+    },
+    {
+      "id": "cos_times_cos__linear_quadratic__compound_simple",
+      "tags": [
+        "mechanism:cos_times_cos",
+        "background:linear_quadratic",
+        "argument_class:mixed"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Quadratic+rng.amplitude*cos(ArgumentACompound)*cos(ArgumentBSimple)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 2701,
+        "max_variants": 2701,
+        "max_configurations": 11063296,
+        "max_derivations": 54020,
+        "max_expansion_steps": 2701000
+      }
+    },
+    {
+      "id": "cos_plus_cos__linear_quadratic__compound_simple",
+      "tags": [
+        "mechanism:cos_plus_cos",
+        "background:linear_quadratic",
+        "argument_class:mixed"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Quadratic+rng.amplitude*cos(ArgumentACompound)+rng.amplitudeB*cos(ArgumentBSimple)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_mixed",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 2701,
+        "max_variants": 2701,
+        "max_configurations": 11063296,
+        "max_derivations": 54020,
+        "max_expansion_steps": 2701000
+      }
+    },
+    {
+      "id": "sin_times_sin__linear_quadratic__compound_compound",
+      "tags": [
+        "mechanism:sin_times_sin",
+        "background:linear_quadratic",
+        "argument_class:double_compound"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Quadratic+rng.amplitude*sin(ArgumentACompound)*sin(ArgumentBCompound)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 12151,
+        "max_variants": 12151,
+        "max_configurations": 24885248,
+        "max_derivations": 243020,
+        "max_expansion_steps": 12151000
+      }
+    },
+    {
+      "id": "sin_plus_sin__linear_quadratic__compound_compound",
+      "tags": [
+        "mechanism:sin_plus_sin",
+        "background:linear_quadratic",
+        "argument_class:double_compound"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Quadratic+rng.amplitude*sin(ArgumentACompound)+rng.amplitudeB*sin(ArgumentBCompound)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 12151,
+        "max_variants": 12151,
+        "max_configurations": 24885248,
+        "max_derivations": 243020,
+        "max_expansion_steps": 12151000
+      }
+    },
+    {
+      "id": "sin_times_cos__linear_quadratic__compound_compound",
+      "tags": [
+        "mechanism:sin_times_cos",
+        "background:linear_quadratic",
+        "argument_class:double_compound"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Quadratic+rng.amplitude*sin(ArgumentACompound)*cos(ArgumentBCompound)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 12151,
+        "max_variants": 12151,
+        "max_configurations": 24885248,
+        "max_derivations": 243020,
+        "max_expansion_steps": 12151000
+      }
+    },
+    {
+      "id": "sin_plus_cos__linear_quadratic__compound_compound",
+      "tags": [
+        "mechanism:sin_plus_cos",
+        "background:linear_quadratic",
+        "argument_class:double_compound"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Quadratic+rng.amplitude*sin(ArgumentACompound)+rng.amplitudeB*cos(ArgumentBCompound)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 12151,
+        "max_variants": 12151,
+        "max_configurations": 24885248,
+        "max_derivations": 243020,
+        "max_expansion_steps": 12151000
+      }
+    },
+    {
+      "id": "cos_times_cos__linear_quadratic__compound_compound",
+      "tags": [
+        "mechanism:cos_times_cos",
+        "background:linear_quadratic",
+        "argument_class:double_compound"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Quadratic+rng.amplitude*cos(ArgumentACompound)*cos(ArgumentBCompound)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 12151,
+        "max_variants": 12151,
+        "max_configurations": 24885248,
+        "max_derivations": 243020,
+        "max_expansion_steps": 12151000
+      }
+    },
+    {
+      "id": "cos_plus_cos__linear_quadratic__compound_compound",
+      "tags": [
+        "mechanism:cos_plus_cos",
+        "background:linear_quadratic",
+        "argument_class:double_compound"
+      ],
+      "rhs": {
+        "z": "rng.linearx*x+rng.lineary*y+rng.linearz*z+rng.quadratic*Quadratic+rng.amplitude*cos(ArgumentACompound)+rng.amplitudeB*cos(ArgumentBCompound)"
+      },
+      "rng": {
+        "linearx": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "linearx",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "lineary": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "lineary",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "linearz": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "linearz",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.0,
+            "high": 1.0
+          }
+        },
+        "quadratic": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "quadratic",
+          "transform": {
+            "kind": "uniform",
+            "low": -0.5,
+            "high": 0.5
+          }
+        },
+        "freqA": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "freqA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixA": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "mixA",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "freqB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "freqB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "mixB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "mixB",
+          "transform": {
+            "kind": "uniform",
+            "low": -4.0,
+            "high": 4.0
+          }
+        },
+        "amplitude": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "amplitude",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        },
+        "amplitudeB": {
+          "bank": "bank_double_compound",
+          "axis": "trial",
+          "stream": "amplitudeB",
+          "transform": {
+            "kind": "uniform",
+            "low": -1.5,
+            "high": 1.5
+          }
+        }
+      },
+      "limits": {
+        "max_skeletons": 12151,
+        "max_variants": 12151,
+        "max_configurations": 24885248,
+        "max_derivations": 243020,
+        "max_expansion_steps": 12151000
+      }
+    }
+  ],
+  "expansion": {
+    "strategy": "enumerate",
+    "max_nodes": 160,
+    "max_depth": 64,
+    "max_expansion_depth": 64
+  },
+  "retain": {
+    "global": {
+      "k": 32,
+      "unit": "resolved_structure"
+    },
+    "per_family": {
+      "k": 8,
+      "unit": "resolved_structure"
+    }
+  }
+}

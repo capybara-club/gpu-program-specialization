@@ -1,0 +1,162 @@
+{
+  "version": 1,
+  "states": [
+    "m",
+    "immature",
+    "f"
+  ],
+  "description": "Illustrative mRNA/immature protein/mature reporter model. Score mature reporter f through the engine observation mapping.",
+  "integration": {
+    "method": "rk4",
+    "dt": 0.01
+  },
+  "constant_banks": {
+    "mrna_loss": [
+      0.08,
+      0.12,
+      0.18
+    ]
+  },
+  "constants": {
+    "b": {
+      "value": 0.01
+    },
+    "dm": {
+      "bank": "mrna_loss"
+    },
+    "kt": {
+      "value": 0.4
+    },
+    "mu": {
+      "value": 0.02
+    }
+  },
+  "rng_banks": {
+    "unit": {
+      "base": "uniform01",
+      "count": 64,
+      "seed": 71,
+      "scope": "run"
+    }
+  },
+  "rng": {
+    "a": {
+      "bank": "unit",
+      "axis": "trial",
+      "stream": "a",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.05,
+        "high": 2.0
+      }
+    },
+    "K": {
+      "bank": "unit",
+      "axis": "trial",
+      "stream": "K",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.1,
+        "high": 10.0
+      }
+    },
+    "dp": {
+      "bank": "unit",
+      "axis": "trial",
+      "stream": "dp",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.01,
+        "high": 0.3
+      }
+    },
+    "km": {
+      "bank": "unit",
+      "axis": "trial",
+      "stream": "maturation",
+      "transform": {
+        "kind": "log_uniform",
+        "low": 0.1,
+        "high": 2.0
+      }
+    }
+  },
+  "parameters": {
+    "log_a": {
+      "initial": 0.0
+    },
+    "log_K": {
+      "initial": 0.0
+    },
+    "log_dp": {
+      "initial": 0.0
+    },
+    "log_km": {
+      "initial": 0.0
+    }
+  },
+  "shapes": {
+    "a": "rng.a*exp(theta.log_a)",
+    "K": "rng.K*exp(theta.log_K)",
+    "dp": "rng.dp*exp(theta.log_dp)",
+    "km": "rng.km*exp(theta.log_km)"
+  },
+  "rules": {
+    "Regulation(q)": [
+      {
+        "expr": "1",
+        "tags": [
+          "no_feedback"
+        ]
+      },
+      {
+        "expr": "1/(1+q/shape.K)",
+        "tags": [
+          "negative_feedback",
+          "hill_1"
+        ]
+      },
+      {
+        "expr": "1/(1+pow(q/shape.K,2))",
+        "tags": [
+          "negative_feedback",
+          "hill_2"
+        ]
+      },
+      {
+        "expr": "1/(1+pow(q/shape.K,4))",
+        "tags": [
+          "negative_feedback",
+          "hill_4"
+        ]
+      }
+    ]
+  },
+  "rhs": {
+    "m": "const.b+shape.a*hole(Regulation,immature+f)-const.dm*m",
+    "immature": "const.kt*m-(shape.km+shape.dp+const.mu)*immature",
+    "f": "shape.km*immature-(shape.dp+const.mu)*f"
+  },
+  "expansion": {
+    "strategy": "enumerate",
+    "max_nodes": 160,
+    "max_depth": 24
+  },
+  "limits": {
+    "max_skeletons": 100,
+    "max_variants": 1000,
+    "max_configurations": 100000,
+    "max_derivations": 1000,
+    "max_seconds": 30
+  },
+  "retain": {
+    "global": {
+      "k": 10,
+      "unit": "resolved_structure"
+    },
+    "by_tag": {
+      "no_feedback": 3,
+      "negative_feedback": 3
+    }
+  }
+}

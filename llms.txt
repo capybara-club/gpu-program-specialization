@@ -1,0 +1,37 @@
+# GPU Program Specialization
+
+> Charles Durham's source handoff for rapidly specializing mathematical programs
+> on NVIDIA GPUs. MIT for owned code; third-party exceptions are documented.
+
+## Read in this order
+- [Overview and techniques](README.md)
+- [Categorized project map and entry points](docs/PROJECTS.md)
+- [Research coverage and status](docs/RESEARCH_COVERAGE.md)
+- [Architecture and lineage](docs/ARCHITECTURE.md)
+- [Adaptation workflow and integration prompt](docs/ADAPTATION.md)
+- [Performance evidence and limits](docs/BENCHMARKS.md)
+- [Build requirements](docs/BUILDING.md)
+- [What was validated](docs/VALIDATION.md)
+
+## Keep the reading set small
+Choose a task in the project map, then read that component's public interface,
+one implementation path and its corresponding tests. Do not ingest the entire
+repository: vendored Boost/SQLite, duplicate historical headers, old benchmark
+reports and the large provenance manifest are not necessary starting context.
+Use docs/RESEARCH_COVERAGE.md to distinguish integrated mechanisms, standalone
+experiments and proposed applications. Read only the benchmark report relevant
+to the performance claim you need to check.
+
+## Primary interfaces
+- [Secant](projects/secant/secant.h): row expressions and fused statistics.
+- [Odezza](projects/odezza/core/odezza.h): rollout scoring and native LM.
+- [PTX Inject](projects/mm-ptx/ptx_inject.h): annotated PTX replacement sites.
+- [Stack PTX](projects/mm-ptx/stack_ptx.h): stack-program host compiler.
+- [AST PTX](projects/mm-ptx/ast_ptx.h): postorder-program host compiler.
+- [Function patching](projects/cubin-function-patch/cubin_function_patch.h).
+- [Prepared requests](projects/odezza/frontend/odezza_request.h).
+
+Secant-SR is an example consumer. Historical settings adapters are not the current
+toggle API. PTX injection still invokes a PTX compiler; direct SASS specialization
+has architecture-specific requirements. Do not claim universal speedups or a
+supported public SaaS product from this repository.

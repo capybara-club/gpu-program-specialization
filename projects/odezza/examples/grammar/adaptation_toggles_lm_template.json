@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "kind": "lm",
+  "states": [
+    "A",
+    "B",
+    "C"
+  ],
+  "candidate_ids": [
+    "REPLACE_WITH_ENGINE_SCORED_CONFIGURATION_ID"
+  ],
+  "parameters": [
+    "log_loss_A",
+    "log_loss_B",
+    "log_loss_C",
+    "log_prod_A",
+    "log_prod_B",
+    "log_prod_C"
+  ],
+  "integration": {
+    "method": "rk4",
+    "dt": 0.01
+  },
+  "settings": {
+    "max_iterations": 50,
+    "damping": 0.001,
+    "tolerance": 1e-08
+  }
+}

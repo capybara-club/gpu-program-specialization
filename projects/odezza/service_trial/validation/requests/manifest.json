@@ -1,0 +1,26 @@
+[
+  {
+    "name": "explicit_cartesian_recovery",
+    "expected": 9
+  },
+  {
+    "name": "normal_False_uniform",
+    "expected": 257
+  },
+  {
+    "name": "normal_True_normal",
+    "expected": 257
+  },
+  {
+    "name": "dependent_skeleton_shared_True",
+    "expected": 112
+  },
+  {
+    "name": "toggles_all",
+    "expected": 1800
+  },
+  {
+    "name": "family_overrides_late_tags",
+    "expected": 4
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "abi_version": 1,
+
+  "stack_types": [
+    { "name": "F32", "literal_prefix": "f32", "constant_type": "f32", "encoder_type": "f32" }
+  ],
+
+  "arg_types": [
+    { "name": "F32", "stack_type": "F32" }
+  ],
+
+  "instructions": [
+    { "ptx": "add.ftz.f32", "args": ["F32", "F32"], "rets": ["F32"] },
+    { "ptx": "sub.ftz.f32", "args": ["F32", "F32"], "rets": ["F32"] },
+    { "ptx": "mul.ftz.f32", "args": ["F32", "F32"], "rets": ["F32"] },
+    { "ptx": "neg.ftz.f32", "args": ["F32"], "rets": ["F32"] },
+    { "ptx": "abs.ftz.f32", "args": ["F32"], "rets": ["F32"] },
+    { "ptx": "rcp.approx.ftz.f32", "args": ["F32"], "rets": ["F32"] },
+    { "ptx": "sqrt.approx.ftz.f32", "args": ["F32"], "rets": ["F32"] },
+    { "ptx": "rsqrt.approx.ftz.f32", "args": ["F32"], "rets": ["F32"] },
+    { "ptx": "sin.approx.ftz.f32", "args": ["F32"], "rets": ["F32"] },
+    { "ptx": "cos.approx.ftz.f32", "args": ["F32"], "rets": ["F32"] },
+    { "ptx": "ex2.approx.ftz.f32", "args": ["F32"], "rets": ["F32"] },
+    { "ptx": "lg2.approx.ftz.f32", "args": ["F32"], "rets": ["F32"] },
+    { "ptx": "div.approx.ftz.f32", "args": ["F32", "F32"], "rets": ["F32"] },
+    { "ptx": "min.ftz.f32", "args": ["F32", "F32"], "rets": ["F32"] },
+    { "ptx": "max.ftz.f32", "args": ["F32", "F32"], "rets": ["F32"] }
+  ],
+
+  "special_registers": []
+}

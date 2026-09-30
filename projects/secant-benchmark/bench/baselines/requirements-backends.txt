@@ -1,0 +1,2 @@
+kozax==0.1.4
+pyoperon==0.6.1
