@@ -27,6 +27,19 @@ SOFTWARE.
 
 # Handoff validation — 2026-09-30
 
+## Clean-checkout packaging audit
+
+The first GitHub Actions run (`36762377659`, root commit `cb09c499`) stopped at
+the license audit: `million-2048-request.json.license` existed locally but a
+component ignore rule kept it out of Git. The local audit had accepted that
+ignored sidecar, so its earlier pass did not prove complete license packaging.
+The CPU checks had not started in that run; kernel behavior was unaffected.
+
+The sidecar is now included explicitly, and the audit only accepts sidecars
+present in its exported-file inventory. The corrected audit reproduced the
+failure locally before the sidecar was included, then passed with it included.
+GitHub Actions runs the same audit and selected host tests from a clean checkout.
+
 ## Current snapshot
 
 The source audit and full selected host runner passed for the 15-component

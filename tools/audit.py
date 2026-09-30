@@ -78,6 +78,7 @@ def main():
     manifest = json.loads((ROOT / "docs/source-manifest.json").read_text())
     records = {f["path"]: f for f in manifest["files"]}
     candidates = files()
+    candidate_set = set(candidates)
     total = 0
     for path in candidates:
         rel = path.relative_to(ROOT).as_posix()
@@ -110,7 +111,7 @@ def main():
         elif not rel.startswith("LICENSES/"):
             notice = text[:4000]
             sidecar = Path(str(path) + ".license")
-            if sidecar.exists():
+            if sidecar in candidate_set and sidecar.is_file():
                 notice += sidecar.read_text()
             if "Charles Durham" not in notice or not ("SPDX-License-Identifier: MIT" in notice or "MIT License" in notice):
                 problems.append(f"Missing owned license notice: {rel}")

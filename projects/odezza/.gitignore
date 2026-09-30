@@ -107,6 +107,7 @@ scratch/game_probe_validation/enum-regression
 !/service_trial/validation/requests/
 !/service_trial/validation/direct-reference.json
 !/service_trial/validation/million-2048-request.json
+!/service_trial/validation/million-2048-request.json.license
 !/service_trial/validation/million-direct-attempt.json
 
 # Detailed timing/sizing evidence is archived separately from source.
