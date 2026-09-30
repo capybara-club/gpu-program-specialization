@@ -38,7 +38,8 @@ The CPU checks had not started in that run; kernel behavior was unaffected.
 The sidecar is now included explicitly, and the audit only accepts sidecars
 present in its exported-file inventory. The corrected audit reproduced the
 failure locally before the sidecar was included, then passed with it included.
-GitHub Actions runs the same audit and selected host tests from a clean checkout.
+GitHub Actions runs the source audit from a clean checkout. CPU tests are manual;
+they are not run automatically on push or pull requests.
 
 ## Current snapshot
 

@@ -40,6 +40,8 @@ python3 tools/check_host.py
 python3 tools/audit.py
 ```
 
+Host tests are run manually. GitHub Actions runs the source/licensing audit only.
+
 Select a component with `--only secant`, `--only secant-sr`, `--only odezza` or
 `--only mm-ptx`. Build products are ignored. The checks cover:
 
